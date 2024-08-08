@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="shortcut icon" href="https://lsnotgu.github.io/images/favicon.png" />
+<title>在Origin中绘制Partial Dependence Plots(部分依赖图) | Another archive</title>
+<meta name="title" content="在Origin中绘制Partial Dependence Plots(部分依赖图)" />
+<meta name="description" content="在Python中用来绘制PDP的库一般是sklearn或者shap，分别是:
+from sklearn.inspection import PartialDependenceDisplay from shap.plots import partial_dependence 但是Python中调整输出图片的属性（如尺寸、线型、图例等）不如Origin方便，尤其是期刊对图片尺寸有要求，且我们有多张PDP要拼接时。
+核心的问题就是如何取出函数的计算结果。本文以shap中的partial_dependence为例(库版本0.43.0)，通过阅读源码，找到输出图像的$x,y$数据分别是什么，之后的工作就是把这些值复制到Origin里调整图片属性即可。
+可以很容易的定位到源文件_partial_dependence.py，该函数的核心参数有3个：ind(要对哪些属性进行绘制)，model(所用的模型)和data(数据)。我们假设输入数据类型pandas的Dataframe，假设target_feature是我们所关心的属性，数据表为：
+f1 f2 f3 target_feature v1 v2 v3 v4 &hellip; &hellip; &hellip; &hellip; 最开始是条件判断：
+if isinstance(data, Explanation): # 为假，直接执行else部分 features = data.data shap_values = data else: features = data data显然不是一个Explanation对象，因此这里单纯地把我们输入的原始数据data赋给了features。
+use_dataframe = False if str(type(features)).endswith(&#34;&#39;pandas.core.frame.DataFrame&#39;&gt;&#34;): # 为真，因为features是个Dataframe if feature_names is None: # 为真 feature_names = features.columns # feature_names = [&#39;f1&#39;, &#39;f2&#39;, &#39;f3&#39;, &#39;target_feature&#39;] features = features.values # 这里的features变成了numpy数组 use_dataframe = True # 这个参数后面会用到 这部分判断输入的数据类型，并把输入属性和输入的数据（数值）分离开来，分别是feature_names(属性名)和features(属性值)，注意这里的use_dataframe被设置为True，表示我们的原始输入数据是一个Dataframe，后面会用到。" />
+<meta name="keywords" content="Python,origin," />
+
+
+<meta property="og:url" content="https://lsnotgu.github.io/%E5%9C%A8origin%E4%B8%AD%E7%BB%98%E5%88%B6partial-dependence-plots%E9%83%A8%E5%88%86%E4%BE%9D%E8%B5%96%E5%9B%BE/">
+  <meta property="og:site_name" content="Another archive">
+  <meta property="og:title" content="在Origin中绘制Partial Dependence Plots(部分依赖图)">
+  <meta property="og:description" content="在Python中用来绘制PDP的库一般是sklearn或者shap，分别是:
+from sklearn.inspection import PartialDependenceDisplay from shap.plots import partial_dependence 但是Python中调整输出图片的属性（如尺寸、线型、图例等）不如Origin方便，尤其是期刊对图片尺寸有要求，且我们有多张PDP要拼接时。
+核心的问题就是如何取出函数的计算结果。本文以shap中的partial_dependence为例(库版本0.43.0)，通过阅读源码，找到输出图像的$x,y$数据分别是什么，之后的工作就是把这些值复制到Origin里调整图片属性即可。
+可以很容易的定位到源文件_partial_dependence.py，该函数的核心参数有3个：ind(要对哪些属性进行绘制)，model(所用的模型)和data(数据)。我们假设输入数据类型pandas的Dataframe，假设target_feature是我们所关心的属性，数据表为：
+f1 f2 f3 target_feature v1 v2 v3 v4 … … … … 最开始是条件判断：
+if isinstance(data, Explanation): # 为假，直接执行else部分 features = data.data shap_values = data else: features = data data显然不是一个Explanation对象，因此这里单纯地把我们输入的原始数据data赋给了features。
+use_dataframe = False if str(type(features)).endswith(&#34;&#39;pandas.core.frame.DataFrame&#39;&gt;&#34;): # 为真，因为features是个Dataframe if feature_names is None: # 为真 feature_names = features.columns # feature_names = [&#39;f1&#39;, &#39;f2&#39;, &#39;f3&#39;, &#39;target_feature&#39;] features = features.values # 这里的features变成了numpy数组 use_dataframe = True # 这个参数后面会用到 这部分判断输入的数据类型，并把输入属性和输入的数据（数值）分离开来，分别是feature_names(属性名)和features(属性值)，注意这里的use_dataframe被设置为True，表示我们的原始输入数据是一个Dataframe，后面会用到。">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2024-08-08T18:41:33+08:00">
+    <meta property="article:modified_time" content="2024-08-08T18:41:33+08:00">
+    <meta property="article:tag" content="Python">
+    <meta property="article:tag" content="Origin">
+    <meta property="og:image" content="https://lsnotgu.github.io/images/share.png">
+
+
+
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://lsnotgu.github.io/images/share.png">
+  <meta name="twitter:title" content="在Origin中绘制Partial Dependence Plots(部分依赖图)">
+  <meta name="twitter:description" content="在Python中用来绘制PDP的库一般是sklearn或者shap，分别是:
+from sklearn.inspection import PartialDependenceDisplay from shap.plots import partial_dependence 但是Python中调整输出图片的属性（如尺寸、线型、图例等）不如Origin方便，尤其是期刊对图片尺寸有要求，且我们有多张PDP要拼接时。
+核心的问题就是如何取出函数的计算结果。本文以shap中的partial_dependence为例(库版本0.43.0)，通过阅读源码，找到输出图像的$x,y$数据分别是什么，之后的工作就是把这些值复制到Origin里调整图片属性即可。
+可以很容易的定位到源文件_partial_dependence.py，该函数的核心参数有3个：ind(要对哪些属性进行绘制)，model(所用的模型)和data(数据)。我们假设输入数据类型pandas的Dataframe，假设target_feature是我们所关心的属性，数据表为：
+f1 f2 f3 target_feature v1 v2 v3 v4 … … … … 最开始是条件判断：
+if isinstance(data, Explanation): # 为假，直接执行else部分 features = data.data shap_values = data else: features = data data显然不是一个Explanation对象，因此这里单纯地把我们输入的原始数据data赋给了features。
+use_dataframe = False if str(type(features)).endswith(&#34;&#39;pandas.core.frame.DataFrame&#39;&gt;&#34;): # 为真，因为features是个Dataframe if feature_names is None: # 为真 feature_names = features.columns # feature_names = [&#39;f1&#39;, &#39;f2&#39;, &#39;f3&#39;, &#39;target_feature&#39;] features = features.values # 这里的features变成了numpy数组 use_dataframe = True # 这个参数后面会用到 这部分判断输入的数据类型，并把输入属性和输入的数据（数值）分离开来，分别是feature_names(属性名)和features(属性值)，注意这里的use_dataframe被设置为True，表示我们的原始输入数据是一个Dataframe，后面会用到。">
+
+
+
+
+  <meta itemprop="name" content="在Origin中绘制Partial Dependence Plots(部分依赖图)">
+  <meta itemprop="description" content="在Python中用来绘制PDP的库一般是sklearn或者shap，分别是:
+from sklearn.inspection import PartialDependenceDisplay from shap.plots import partial_dependence 但是Python中调整输出图片的属性（如尺寸、线型、图例等）不如Origin方便，尤其是期刊对图片尺寸有要求，且我们有多张PDP要拼接时。
+核心的问题就是如何取出函数的计算结果。本文以shap中的partial_dependence为例(库版本0.43.0)，通过阅读源码，找到输出图像的$x,y$数据分别是什么，之后的工作就是把这些值复制到Origin里调整图片属性即可。
+可以很容易的定位到源文件_partial_dependence.py，该函数的核心参数有3个：ind(要对哪些属性进行绘制)，model(所用的模型)和data(数据)。我们假设输入数据类型pandas的Dataframe，假设target_feature是我们所关心的属性，数据表为：
+f1 f2 f3 target_feature v1 v2 v3 v4 … … … … 最开始是条件判断：
+if isinstance(data, Explanation): # 为假，直接执行else部分 features = data.data shap_values = data else: features = data data显然不是一个Explanation对象，因此这里单纯地把我们输入的原始数据data赋给了features。
+use_dataframe = False if str(type(features)).endswith(&#34;&#39;pandas.core.frame.DataFrame&#39;&gt;&#34;): # 为真，因为features是个Dataframe if feature_names is None: # 为真 feature_names = features.columns # feature_names = [&#39;f1&#39;, &#39;f2&#39;, &#39;f3&#39;, &#39;target_feature&#39;] features = features.values # 这里的features变成了numpy数组 use_dataframe = True # 这个参数后面会用到 这部分判断输入的数据类型，并把输入属性和输入的数据（数值）分离开来，分别是feature_names(属性名)和features(属性值)，注意这里的use_dataframe被设置为True，表示我们的原始输入数据是一个Dataframe，后面会用到。">
+  <meta itemprop="datePublished" content="2024-08-08T18:41:33+08:00">
+  <meta itemprop="dateModified" content="2024-08-08T18:41:33+08:00">
+  <meta itemprop="wordCount" content="161">
+  <meta itemprop="image" content="https://lsnotgu.github.io/images/share.png">
+  <meta itemprop="keywords" content="Python,Origin">
+<meta name="referrer" content="no-referrer-when-downgrade" />
+
+  <style>
+  body {
+    font-family: Verdana, sans-serif;
+    margin: auto;
+    padding: 20px;
+    max-width: 720px;
+    text-align: left;
+    background-color: #fff;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.5;
+    color: #444;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  strong,
+  b {
+    color: #222;
+  }
+
+  a {
+    color: #3273dc;
+     
+  }
+
+  .title {
+    text-decoration: none;
+    border: 0;
+  }
+
+  .title span {
+    font-weight: 400;
+  }
+
+  nav a {
+    margin-right: 10px;
+  }
+
+  textarea {
+    width: 100%;
+    font-size: 16px;
+  }
+
+  input {
+    font-size: 16px;
+  }
+
+  content {
+    line-height: 1.6;
+  }
+
+  table {
+    width: 100%;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  code {
+    padding: 2px 5px;
+    background-color: #f2f2f2;
+  }
+
+  pre code {
+    color: #222;
+    display: block;
+    padding: 20px;
+    white-space: pre-wrap;
+    font-size: 14px;
+    overflow-x: auto;
+  }
+
+  div.highlight pre {
+    background-color: initial;
+    color: initial;
+  }
+
+  div.highlight code {
+    background-color: unset;
+    color: unset;
+  }
+
+  blockquote {
+    border-left: 1px solid #999;
+    color: #222;
+    padding-left: 20px;
+    font-style: italic;
+  }
+
+  footer {
+    padding: 25px;
+    text-align: center;
+  }
+
+  .helptext {
+    color: #777;
+    font-size: small;
+  }
+
+  .errorlist {
+    color: #eba613;
+    font-size: small;
+  }
+
+   
+  ul.blog-posts {
+    list-style-type: none;
+    padding: unset;
+  }
+
+  ul.blog-posts li {
+    display: flex;
+  }
+
+  ul.blog-posts li span {
+    flex: 0 0 130px;
+  }
+
+  ul.blog-posts li a:visited {
+    color: #8b6fcb;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    body {
+      background-color: #333;
+      color: #ddd;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    strong,
+    b {
+      color: #eee;
+    }
+
+    a {
+      color: #8cc2dd;
+    }
+
+    code {
+      background-color: #777;
+    }
+
+    pre code {
+      color: #ddd;
+    }
+
+    blockquote {
+      color: #ccc;
+    }
+
+    textarea,
+    input {
+      background-color: #252525;
+      color: #ddd;
+    }
+
+    .helptext {
+      color: #aaa;
+    }
+  }
+
+</style>
+
+</head>
+
+<body>
+  <header><a href="/" class="title">
+  <h2>Another archive</h2>
+</a>
+<nav><a href="/">Home</a>
+
+<a href="/bear/">Bear</a>
+
+
+<a href="/blog">Blog</a>
+
+</nav>
+</header>
+  <main>
+
+<h1>在Origin中绘制Partial Dependence Plots(部分依赖图)</h1>
+<p>
+  <i>
+    <time datetime='2024-08-08' pubdate>
+      08 Aug, 2024
+    </time>
+  </i>
+</p>
+
+<content>
+  <p>在<code>Python</code>中用来绘制PDP的库一般是<code>sklearn</code>或者<code>shap</code>，分别是:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Python" data-lang="Python"><span style="display:flex;"><span><span style="color:#f92672">from</span> sklearn.inspection <span style="color:#f92672">import</span> PartialDependenceDisplay
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> shap.plots <span style="color:#f92672">import</span> partial_dependence
+</span></span></code></pre></div><p>但是<code>Python</code>中调整输出图片的属性（如尺寸、线型、图例等）不如<code>Origin</code>方便，尤其是期刊对图片尺寸有要求，且我们有多张PDP要拼接时。</p>
+<p>核心的问题就是如何取出函数的计算结果。本文以<code>shap</code>中的<code>partial_dependence</code>为例(库版本<code>0.43.0</code>)，通过阅读源码，找到输出图像的$x,y$数据分别是什么，之后的工作就是把这些值复制到<code>Origin</code>里调整图片属性即可。</p>
+<p>可以很容易的定位到源文件<code>_partial_dependence.py</code>，该函数的核心参数有3个：<code>ind</code>(要对哪些属性进行绘制)，<code>model</code>(所用的模型)和<code>data</code>(数据)。我们假设输入数据类型<code>pandas</code>的<code>Dataframe</code>，假设<code>target_feature</code>是我们所关心的属性，数据表为：</p>
+<table>
+<thead>
+<tr>
+<th>f1</th>
+<th>f2</th>
+<th>f3</th>
+<th>target_feature</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>v1</td>
+<td>v2</td>
+<td>v3</td>
+<td><!-- raw HTML omitted -->v4<!-- raw HTML omitted --></td>
+</tr>
+<tr>
+<td>&hellip;</td>
+<td>&hellip;</td>
+<td>&hellip;</td>
+<td><!-- raw HTML omitted -->&hellip;<!-- raw HTML omitted --></td>
+</tr>
+</tbody>
+</table>
+<p>最开始是条件判断：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Python" data-lang="Python"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> isinstance(data, Explanation):  <span style="color:#75715e"># 为假，直接执行else部分</span>
+</span></span><span style="display:flex;"><span>    features <span style="color:#f92672">=</span> data<span style="color:#f92672">.</span>data
+</span></span><span style="display:flex;"><span>    shap_values <span style="color:#f92672">=</span> data
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>    features <span style="color:#f92672">=</span> data
+</span></span></code></pre></div><p><code>data</code>显然不是一个<code>Explanation</code>对象，因此这里单纯地把我们输入的原始数据<code>data</code>赋给了<code>features</code>。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Python" data-lang="Python"><span style="display:flex;"><span>use_dataframe <span style="color:#f92672">=</span> <span style="color:#66d9ef">False</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> str(type(features))<span style="color:#f92672">.</span>endswith(<span style="color:#e6db74">&#34;&#39;pandas.core.frame.DataFrame&#39;&gt;&#34;</span>):  <span style="color:#75715e"># 为真，因为features是个Dataframe</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> feature_names <span style="color:#f92672">is</span> <span style="color:#66d9ef">None</span>:  <span style="color:#75715e"># 为真</span>
+</span></span><span style="display:flex;"><span>        feature_names <span style="color:#f92672">=</span> features<span style="color:#f92672">.</span>columns  <span style="color:#75715e"># feature_names = [&#39;f1&#39;, &#39;f2&#39;, &#39;f3&#39;, &#39;target_feature&#39;]</span>
+</span></span><span style="display:flex;"><span>    features <span style="color:#f92672">=</span> features<span style="color:#f92672">.</span>values  <span style="color:#75715e"># 这里的features变成了numpy数组</span>
+</span></span><span style="display:flex;"><span>    use_dataframe <span style="color:#f92672">=</span> <span style="color:#66d9ef">True</span>  <span style="color:#75715e"># 这个参数后面会用到</span>
+</span></span></code></pre></div><p>这部分判断输入的数据类型，并把输入属性和输入的数据（数值）分离开来，分别是<code>feature_names</code>(属性名)和<code>features</code>(属性值)，注意这里的<code>use_dataframe</code>被设置为<code>True</code>，表示我们的原始输入数据是一个<code>Dataframe</code>，后面会用到。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Python" data-lang="Python"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> type(ind) <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> tuple:  <span style="color:#75715e"># 为真，我们的输入是一个str</span>
+</span></span><span style="display:flex;"><span>    ind <span style="color:#f92672">=</span> convert_name(ind, <span style="color:#66d9ef">None</span>, feature_names)  <span style="color:#75715e"># 把对应的属性转成序号，也就是3</span>
+</span></span><span style="display:flex;"><span>    xv <span style="color:#f92672">=</span> features[:,ind]  <span style="color:#75715e"># 取出对应属性的值为横坐标</span>
+</span></span><span style="display:flex;"><span>    xmin, xmax <span style="color:#f92672">=</span> compute_bounds(xmin, xmax, xv)  <span style="color:#75715e"># 计算x轴的上下限</span>
+</span></span><span style="display:flex;"><span>    npoints <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span> <span style="color:#66d9ef">if</span> npoints <span style="color:#f92672">is</span> <span style="color:#66d9ef">None</span> <span style="color:#66d9ef">else</span> npoints  <span style="color:#75715e"># 采样的点数</span>
+</span></span><span style="display:flex;"><span>    xs <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>linspace(xmin, xmax, npoints)  <span style="color:#75715e"># 真实x轴每个点的横坐标</span>
+</span></span></code></pre></div><p>这里比较容易能猜出来<code>xv</code>就是横坐标的范围(x values)，而<strong>真正用于绘图的横轴值</strong>是<code>xs</code>，这是一个长度为<code>npoints</code>的一维数组，默认长度为<code>100</code>。</p>
+<p><code>ice</code>的部分我们不看(对个体条件期望有兴趣的小伙伴可参考<a href="https://zhuanlan.zhihu.com/p/90217007">这里</a>的第三部分。后面的代码是：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Python" data-lang="Python"><span style="display:flex;"><span>features_tmp <span style="color:#f92672">=</span> features<span style="color:#f92672">.</span>copy()  <span style="color:#75715e"># 拷贝了一份数值</span>
+</span></span><span style="display:flex;"><span>vals <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>zeros(npoints)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(npoints):
+</span></span><span style="display:flex;"><span>    features_tmp[:,ind] <span style="color:#f92672">=</span> xs[i]  <span style="color:#75715e"># 用插值的某一个值替换原始数据列</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> use_dataframe:  <span style="color:#75715e"># 为真</span>
+</span></span><span style="display:flex;"><span>        vals[i] <span style="color:#f92672">=</span> model(pd<span style="color:#f92672">.</span>DataFrame(features_tmp, columns<span style="color:#f92672">=</span>feature_names))<span style="color:#f92672">.</span>mean()  <span style="color:#75715e"># 计算替换指定属性列，其余属性均不变情况下的模型输出均值</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>        vals[i] <span style="color:#f92672">=</span> model(features_tmp)<span style="color:#f92672">.</span>mean()
+</span></span></code></pre></div><p>这里就是<strong>图像的纵轴值</strong><code>vals</code>！有小伙伴可能不知道<code>features_tmp[:,ind] = xs[i]</code>这里用<em>一个值</em>替换<em>一整列</em>数据是在干嘛，这和部份依赖值的计算原理有关，参见<a href="https://iceflameworm.github.io/2019/08/28/partial-plots/">这篇博客</a>的工作原理部分。</p>
+<p>总之，现在我们已经找到了想要的$x,y$数据，那我们只要修改源码的返回属性即可。这里我图省事直接在86行插入了返回语句（记得要还原回去，不然下次再用这个库都不知道为什么报错！）：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Python" data-lang="Python"><span style="display:flex;"><span><span style="color:#66d9ef">return</span> xs, val
+</span></span></code></pre></div>
+</content>
+<p>
+  
+  <a href="https://lsnotgu.github.io/blog/python/">#Python</a>
+  
+  <a href="https://lsnotgu.github.io/blog/origin/">#Origin</a>
+  
+</p>
+
+  </main>
+  <footer>Made with <a href="https://github.com/janraasch/hugo-bearblog/">Hugo ʕ•ᴥ•ʔ Bear</a>
+</footer>
+
+    
+</body>
+
+</html>
