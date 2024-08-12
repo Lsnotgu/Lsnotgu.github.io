@@ -2,39 +2,39 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://lsnotgu.github.io/</loc>
+    <loc>http://localhost:1313/</loc>
     <lastmod>2024-08-08T21:29:42+08:00</lastmod>
   </url><url>
-    <loc>https://lsnotgu.github.io/blog/</loc>
+    <loc>http://localhost:1313/blog/</loc>
     <lastmod>2024-08-08T21:29:42+08:00</lastmod>
   </url><url>
-    <loc>https://lsnotgu.github.io/blog/math/</loc>
+    <loc>http://localhost:1313/blog/math/</loc>
     <lastmod>2024-08-08T21:29:42+08:00</lastmod>
   </url><url>
-    <loc>https://lsnotgu.github.io/blog/probability/</loc>
+    <loc>http://localhost:1313/blog/probability/</loc>
     <lastmod>2024-08-08T21:29:42+08:00</lastmod>
   </url><url>
-    <loc>https://lsnotgu.github.io/%E5%8F%A4%E5%85%B8%E6%A6%82%E5%9E%8B%E5%92%8C%E4%B8%80%E4%BA%9B%E7%BB%8F%E5%85%B8%E9%97%AE%E9%A2%98%E6%9B%B4%E6%96%B0%E4%B8%AD/</loc>
+    <loc>http://localhost:1313/%E5%8F%A4%E5%85%B8%E6%A6%82%E5%9E%8B%E5%92%8C%E4%B8%80%E4%BA%9B%E7%BB%8F%E5%85%B8%E9%97%AE%E9%A2%98%E6%9B%B4%E6%96%B0%E4%B8%AD/</loc>
     <lastmod>2024-08-08T21:29:42+08:00</lastmod>
   </url><url>
-    <loc>https://lsnotgu.github.io/blog/origin/</loc>
+    <loc>http://localhost:1313/blog/origin/</loc>
     <lastmod>2024-08-08T18:41:33+08:00</lastmod>
   </url><url>
-    <loc>https://lsnotgu.github.io/blog/python/</loc>
+    <loc>http://localhost:1313/blog/python/</loc>
     <lastmod>2024-08-08T18:41:33+08:00</lastmod>
   </url><url>
-    <loc>https://lsnotgu.github.io/%E5%9C%A8origin%E4%B8%AD%E7%BB%98%E5%88%B6partial-dependence-plots%E9%83%A8%E5%88%86%E4%BE%9D%E8%B5%96%E5%9B%BE/</loc>
+    <loc>http://localhost:1313/%E5%9C%A8origin%E4%B8%AD%E7%BB%98%E5%88%B6partial-dependence-plots%E9%83%A8%E5%88%86%E4%BE%9D%E8%B5%96%E5%9B%BE/</loc>
     <lastmod>2024-08-08T18:41:33+08:00</lastmod>
   </url><url>
-    <loc>https://lsnotgu.github.io/blog/markdown/</loc>
+    <loc>http://localhost:1313/blog/markdown/</loc>
     <lastmod>2020-01-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://lsnotgu.github.io/markdown-syntax-guide/</loc>
+    <loc>http://localhost:1313/markdown-syntax-guide/</loc>
     <lastmod>2020-01-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://lsnotgu.github.io/blog/syntax/</loc>
+    <loc>http://localhost:1313/blog/syntax/</loc>
     <lastmod>2020-01-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://lsnotgu.github.io/bear/</loc>
+    <loc>http://localhost:1313/bear/</loc>
   </url>
 </urlset>

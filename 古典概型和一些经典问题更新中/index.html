@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en-US">
 
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="shortcut icon" href="https://lsnotgu.github.io/images/favicon.png" />
 <title>古典概型和一些经典问题(更新中) | Another archive</title>
 <meta name="title" content="古典概型和一些经典问题(更新中)" />
 <meta name="description" content="最基础的一些内容 概率三公理：非负；和为1；互斥可加 古典概率：有限个&#43;等可能 1 古典概型中的生日问题 1.1 问题的引入 2014年的巴西世界杯，共有32支球队参与。其中有16支球队的球员有同天生日的情况。如巴西队的Hulk和Paulinho，他们的生日都是7月25号。我们知道，一支完整的足球队人数为23人，那么2014年，半数球队有队员同天生日，是否是偶然的呢？
@@ -16,7 +15,7 @@ import matplotlib.pyplot as plt import math # Define the function f(n) def f(n):
 <meta name="keywords" content="math,probability," />
 
 
-<meta property="og:url" content="https://lsnotgu.github.io/%E5%8F%A4%E5%85%B8%E6%A6%82%E5%9E%8B%E5%92%8C%E4%B8%80%E4%BA%9B%E7%BB%8F%E5%85%B8%E9%97%AE%E9%A2%98%E6%9B%B4%E6%96%B0%E4%B8%AD/">
+<meta property="og:url" content="http://localhost:1313/%E5%8F%A4%E5%85%B8%E6%A6%82%E5%9E%8B%E5%92%8C%E4%B8%80%E4%BA%9B%E7%BB%8F%E5%85%B8%E9%97%AE%E9%A2%98%E6%9B%B4%E6%96%B0%E4%B8%AD/">
   <meta property="og:site_name" content="Another archive">
   <meta property="og:title" content="古典概型和一些经典问题(更新中)">
   <meta property="og:description" content="最基础的一些内容 概率三公理：非负；和为1；互斥可加 古典概率：有限个&#43;等可能 1 古典概型中的生日问题 1.1 问题的引入 2014年的巴西世界杯，共有32支球队参与。其中有16支球队的球员有同天生日的情况。如巴西队的Hulk和Paulinho，他们的生日都是7月25号。我们知道，一支完整的足球队人数为23人，那么2014年，半数球队有队员同天生日，是否是偶然的呢？
@@ -31,13 +30,11 @@ import matplotlib.pyplot as plt import math # Define the function f(n) def f(n):
     <meta property="article:modified_time" content="2024-08-08T21:29:42+08:00">
     <meta property="article:tag" content="Math">
     <meta property="article:tag" content="Probability">
-    <meta property="og:image" content="https://lsnotgu.github.io/images/share.png">
 
 
 
 
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://lsnotgu.github.io/images/share.png">
+  <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="古典概型和一些经典问题(更新中)">
   <meta name="twitter:description" content="最基础的一些内容 概率三公理：非负；和为1；互斥可加 古典概率：有限个&#43;等可能 1 古典概型中的生日问题 1.1 问题的引入 2014年的巴西世界杯，共有32支球队参与。其中有16支球队的球员有同天生日的情况。如巴西队的Hulk和Paulinho，他们的生日都是7月25号。我们知道，一支完整的足球队人数为23人，那么2014年，半数球队有队员同天生日，是否是偶然的呢？
 1.2 概率的角度 我们先来解决这个问题：假设每个人的生日在365天中任意一天的概率是相同的，那么23人中，至少两人的生日在同一天的概率是多少？
@@ -56,8 +53,7 @@ import matplotlib.pyplot as plt import math # Define the function f(n) def f(n):
 import matplotlib.pyplot as plt import math # Define the function f(n) def f(n): if n &lt;= 1: return 0 else: p_a = math.perm(365, n)/(365**n) return round(1 - p_a, 5) # Generate values n_values = list(range(1,101)) f_values = [f(n) for n in n_values] # Plot f(n) plt.">
   <meta itemprop="datePublished" content="2024-08-08T21:29:42+08:00">
   <meta itemprop="dateModified" content="2024-08-08T21:29:42+08:00">
-  <meta itemprop="wordCount" content="244">
-  <meta itemprop="image" content="https://lsnotgu.github.io/images/share.png">
+  <meta itemprop="wordCount" content="272">
   <meta itemprop="keywords" content="Math,Probability">
 <meta name="referrer" content="no-referrer-when-downgrade" />
 
@@ -452,13 +448,50 @@ $$
 <p>代入计算后发现，$P(A|B)=\frac{1}{3}$，也就是说，如果我们换一个门，那么获得大奖的概率为$\frac{2}{3}$。</p>
 <p>这可能和有些同学想的不一样，问题的关键在于，<strong>主持人是知道门后面是什么的，他会根据我们选择，必定选取一扇有羊的门，主持人开门相当于帮我们排除了一个错误答案</strong>。也可以这样考虑，如果你的面前有100扇门，只有一扇门后面有大奖，这个时候主持人帮你排除了一扇错误门，这个时候重新选择，中将概率是否感觉高了一些？</p>
 <p>关于这个问题在许多BBS上都有讨论，这里给出<a href="https://www.coursera.org/learn/prob1/discussions/forums/JlZ3wyj4EeaZ8Apto8QB_w/threads/FD-O9_NYEeaLjw4_t1TJig">coursera上的一个讨论</a>。</p>
+<h3 id="4-n门问题与全概率公式">4 $n$门问题与全概率公式</h3>
+<h4 id="41-全概率公式">4.1 全概率公式</h4>
+<p>设样本空间$S$可划分为$S=B_1\cup B_2\cup &hellip; \cup B_n$，$A=AB_1\cup AB_2\cup &hellip; \cup AB_n$且$AB_1&hellip;AB_n$两两不相容，那么：
+</p>
+$$
+P(A)=P(AB_1)+P(AB_2)+...+P(AB_n)=P(A|B_1)P(B_1)+...+P(AB_n|B_n)P(B_n)
+$$
+<h4 id="42-n门问题">4.2 $n$门问题</h4>
+<p>在3.2节中，我们讨论了经典的三门问题，这里我们来看一下这个问题的变种：假设现在你的面前有<strong>9扇门</strong>，其中<strong>1扇门</strong>后面是车，而另外<strong>8扇门</strong>后面都是羊。你首先随意选择了一扇门，之后，主持人打开了<strong>7扇</strong>后面是羊的门，请问这个时候，选择换门能得到汽车大奖的概率是多少？
+<img src="pics/Fig.3_doors.png" alt="9扇门的情况" title="9扇门的情况"></p>
+<p>我们设事件$A$：换门之后中大奖，事件$B_i$：最初选择了第$i$扇门。假设大奖在第一扇门后面，那么我们可以知道：$P(A|B_1)=0,P(A|B_i)=1(i=2,3,&hellip;,9)$。由于最初我们选择的门是随机的，也就是选择任意一扇门的概率都是$\frac{1}{9}$。我们关心的是事件$A$，于是根据全概率公式，有：
+</p>
+$$
+P(A)=P(AB_1)+P(AB_2)+...+P(AB_9)=P(A|B_1)P(B_1)+...+P(AB_9|B_9)P(B_9)
+$$
+$$
+P(A)=0\cdot\frac{1}{9}+1\cdot\frac{1}{9}+...+1\cdot\frac{1}{9}=\frac{8}{9}
+$$
+<h3 id="5-贝叶斯bayesian公式">5 贝叶斯(Bayesian)公式</h3>
 
 </content>
+
+<script src="https://giscus.app/client.js"
+        data-repo="lsnotgu/lsnotgu.github.io"
+        data-repo-id="R_kgDOMf6mdA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOMf6mdM4Chj2B"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="preferred_color_scheme"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
 <p>
   
-  <a href="https://lsnotgu.github.io/blog/math/">#Math</a>
+  <a href="http://localhost:1313/blog/math/">#Math</a>
   
-  <a href="https://lsnotgu.github.io/blog/probability/">#Probability</a>
+  <a href="http://localhost:1313/blog/probability/">#Probability</a>
   
 </p>
 
