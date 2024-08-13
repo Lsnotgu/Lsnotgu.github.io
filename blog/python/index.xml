@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Python on Another archive</title>
-    <link>http://localhost:1313/blog/python/</link>
+    <link>https://lsnotgu.github.io/blog/python/</link>
     <description>Recent content in Python on Another archive</description>
     <generator>Hugo</generator>
     <language>en-US</language>
     <copyright>Copyright © 2024, icee.</copyright>
     <lastBuildDate>Thu, 08 Aug 2024 18:41:33 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/blog/python/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://lsnotgu.github.io/blog/python/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>在Origin中绘制Partial Dependence Plots(部分依赖图)</title>
-      <link>http://localhost:1313/%E5%9C%A8origin%E4%B8%AD%E7%BB%98%E5%88%B6partial-dependence-plots%E9%83%A8%E5%88%86%E4%BE%9D%E8%B5%96%E5%9B%BE/</link>
+      <link>https://lsnotgu.github.io/%E5%9C%A8origin%E4%B8%AD%E7%BB%98%E5%88%B6partial-dependence-plots%E9%83%A8%E5%88%86%E4%BE%9D%E8%B5%96%E5%9B%BE/</link>
       <pubDate>Thu, 08 Aug 2024 18:41:33 +0800</pubDate>
-      <guid>http://localhost:1313/%E5%9C%A8origin%E4%B8%AD%E7%BB%98%E5%88%B6partial-dependence-plots%E9%83%A8%E5%88%86%E4%BE%9D%E8%B5%96%E5%9B%BE/</guid>
+      <guid>https://lsnotgu.github.io/%E5%9C%A8origin%E4%B8%AD%E7%BB%98%E5%88%B6partial-dependence-plots%E9%83%A8%E5%88%86%E4%BE%9D%E8%B5%96%E5%9B%BE/</guid>
       <description>在Python中用来绘制PDP的库一般是sklearn或者shap，分别是:&#xA;from sklearn.inspection import PartialDependenceDisplay from shap.plots import partial_dependence 但是Python中调整输出图片的属性（如尺寸、线型、图例等）不如Origin方便，尤其是期刊对图片尺寸有要求，且我们有多张PDP要拼接时。&#xA;核心的问题就是如何取出函数的计算结果。本文以shap中的partial_dependence为例(库版本0.43.0)，通过阅读源码，找到输出图像的$x,y$数据分别是什么，之后的工作就是把这些值复制到Origin里调整图片属性即可。&#xA;可以很容易的定位到源文件_partial_dependence.py，该函数的核心参数有3个：ind(要对哪些属性进行绘制)，model(所用的模型)和data(数据)。我们假设输入数据类型pandas的Dataframe，假设target_feature是我们所关心的属性，数据表为：&#xA;f1 f2 f3 target_feature v1 v2 v3 v4 &amp;hellip; &amp;hellip; &amp;hellip; &amp;hellip; 最开始是条件判断：&#xA;if isinstance(data, Explanation): # 为假，直接执行else部分 features = data.data shap_values = data else: features = data data显然不是一个Explanation对象，因此这里单纯地把我们输入的原始数据data赋给了features。&#xA;use_dataframe = False if str(type(features)).endswith(&amp;#34;&amp;#39;pandas.core.frame.DataFrame&amp;#39;&amp;gt;&amp;#34;): # 为真，因为features是个Dataframe if feature_names is None: # 为真 feature_names = features.columns # feature_names = [&amp;#39;f1&amp;#39;, &amp;#39;f2&amp;#39;, &amp;#39;f3&amp;#39;, &amp;#39;target_feature&amp;#39;] features = features.values # 这里的features变成了numpy数组 use_dataframe = True # 这个参数后面会用到 这部分判断输入的数据类型，并把输入属性和输入的数据（数值）分离开来，分别是feature_names(属性名)和features(属性值)，注意这里的use_dataframe被设置为True，表示我们的原始输入数据是一个Dataframe，后面会用到。</description>
     </item>
   </channel>
