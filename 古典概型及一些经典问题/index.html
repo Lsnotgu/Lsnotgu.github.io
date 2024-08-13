@@ -5,8 +5,8 @@
   <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>古典概型和一些经典问题(更新中) | Another archive</title>
-<meta name="title" content="古典概型和一些经典问题(更新中)" />
+<title>古典概型及一些经典问题 | Another archive</title>
+<meta name="title" content="古典概型及一些经典问题" />
 <meta name="description" content="最基础的一些内容 概率三公理：非负；和为1；互斥可加 古典概率：有限个&#43;等可能 1 古典概型中的生日问题 1.1 问题的引入 2014年的巴西世界杯，共有32支球队参与。其中有16支球队的球员有同天生日的情况。如巴西队的Hulk和Paulinho，他们的生日都是7月25号。我们知道，一支完整的足球队人数为23人，那么2014年，半数球队有队员同天生日，是否是偶然的呢？
 1.2 概率的角度 我们先来解决这个问题：假设每个人的生日在365天中任意一天的概率是相同的，那么23人中，至少两人的生日在同一天的概率是多少？
 从问题的反面来考虑会比较容易，记事件$A$为所有人的生日都不同，那么这个事件的反面事件$B$就是至少两人的生日在同一天。我们所要求的就是： $$P(B)=1-P(A)$$ 考察事件$A$：由于每个人的生日在一年中任何一天的概率是相同的，因此分母（所有可能的组合）为：$365^{23}$，即每个人的生日都有可能在365天中任意一天。分子为：$P_{365}^{23}$，可以这么考虑：第1个人选365天中任意一天，第2个人在剩下364天里选一天&hellip;以此类推。因此，最终我们要计算的概率： $$P(B)=1-\frac{365\cdot364\cdot...\cdot(365-23&#43;1)}{365^{23}}\approx0.507$$ 令人惊讶的是，这个概率竟然在50%左右！2014世界杯共有32支球队参加，每支球队有队员同天生日的概率大概是50%，那么计算一下期望，会发现大约有16支球队的球员存在同天生日的情况，与实际情况完全相符。
@@ -15,9 +15,9 @@ import matplotlib.pyplot as plt import math # Define the function f(n) def f(n):
 <meta name="keywords" content="math,probability," />
 
 
-<meta property="og:url" content="https://lsnotgu.github.io/%E5%8F%A4%E5%85%B8%E6%A6%82%E5%9E%8B%E5%92%8C%E4%B8%80%E4%BA%9B%E7%BB%8F%E5%85%B8%E9%97%AE%E9%A2%98%E6%9B%B4%E6%96%B0%E4%B8%AD/">
+<meta property="og:url" content="https://lsnotgu.github.io/%E5%8F%A4%E5%85%B8%E6%A6%82%E5%9E%8B%E5%8F%8A%E4%B8%80%E4%BA%9B%E7%BB%8F%E5%85%B8%E9%97%AE%E9%A2%98/">
   <meta property="og:site_name" content="Another archive">
-  <meta property="og:title" content="古典概型和一些经典问题(更新中)">
+  <meta property="og:title" content="古典概型及一些经典问题">
   <meta property="og:description" content="最基础的一些内容 概率三公理：非负；和为1；互斥可加 古典概率：有限个&#43;等可能 1 古典概型中的生日问题 1.1 问题的引入 2014年的巴西世界杯，共有32支球队参与。其中有16支球队的球员有同天生日的情况。如巴西队的Hulk和Paulinho，他们的生日都是7月25号。我们知道，一支完整的足球队人数为23人，那么2014年，半数球队有队员同天生日，是否是偶然的呢？
 1.2 概率的角度 我们先来解决这个问题：假设每个人的生日在365天中任意一天的概率是相同的，那么23人中，至少两人的生日在同一天的概率是多少？
 从问题的反面来考虑会比较容易，记事件$A$为所有人的生日都不同，那么这个事件的反面事件$B$就是至少两人的生日在同一天。我们所要求的就是： $$P(B)=1-P(A)$$ 考察事件$A$：由于每个人的生日在一年中任何一天的概率是相同的，因此分母（所有可能的组合）为：$365^{23}$，即每个人的生日都有可能在365天中任意一天。分子为：$P_{365}^{23}$，可以这么考虑：第1个人选365天中任意一天，第2个人在剩下364天里选一天…以此类推。因此，最终我们要计算的概率： $$P(B)=1-\frac{365\cdot364\cdot...\cdot(365-23&#43;1)}{365^{23}}\approx0.507$$ 令人惊讶的是，这个概率竟然在50%左右！2014世界杯共有32支球队参加，每支球队有队员同天生日的概率大概是50%，那么计算一下期望，会发现大约有16支球队的球员存在同天生日的情况，与实际情况完全相符。
@@ -35,7 +35,7 @@ import matplotlib.pyplot as plt import math # Define the function f(n) def f(n):
 
 
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="古典概型和一些经典问题(更新中)">
+  <meta name="twitter:title" content="古典概型及一些经典问题">
   <meta name="twitter:description" content="最基础的一些内容 概率三公理：非负；和为1；互斥可加 古典概率：有限个&#43;等可能 1 古典概型中的生日问题 1.1 问题的引入 2014年的巴西世界杯，共有32支球队参与。其中有16支球队的球员有同天生日的情况。如巴西队的Hulk和Paulinho，他们的生日都是7月25号。我们知道，一支完整的足球队人数为23人，那么2014年，半数球队有队员同天生日，是否是偶然的呢？
 1.2 概率的角度 我们先来解决这个问题：假设每个人的生日在365天中任意一天的概率是相同的，那么23人中，至少两人的生日在同一天的概率是多少？
 从问题的反面来考虑会比较容易，记事件$A$为所有人的生日都不同，那么这个事件的反面事件$B$就是至少两人的生日在同一天。我们所要求的就是： $$P(B)=1-P(A)$$ 考察事件$A$：由于每个人的生日在一年中任何一天的概率是相同的，因此分母（所有可能的组合）为：$365^{23}$，即每个人的生日都有可能在365天中任意一天。分子为：$P_{365}^{23}$，可以这么考虑：第1个人选365天中任意一天，第2个人在剩下364天里选一天…以此类推。因此，最终我们要计算的概率： $$P(B)=1-\frac{365\cdot364\cdot...\cdot(365-23&#43;1)}{365^{23}}\approx0.507$$ 令人惊讶的是，这个概率竟然在50%左右！2014世界杯共有32支球队参加，每支球队有队员同天生日的概率大概是50%，那么计算一下期望，会发现大约有16支球队的球员存在同天生日的情况，与实际情况完全相符。
@@ -45,7 +45,7 @@ import matplotlib.pyplot as plt import math # Define the function f(n) def f(n):
 
 
 
-  <meta itemprop="name" content="古典概型和一些经典问题(更新中)">
+  <meta itemprop="name" content="古典概型及一些经典问题">
   <meta itemprop="description" content="最基础的一些内容 概率三公理：非负；和为1；互斥可加 古典概率：有限个&#43;等可能 1 古典概型中的生日问题 1.1 问题的引入 2014年的巴西世界杯，共有32支球队参与。其中有16支球队的球员有同天生日的情况。如巴西队的Hulk和Paulinho，他们的生日都是7月25号。我们知道，一支完整的足球队人数为23人，那么2014年，半数球队有队员同天生日，是否是偶然的呢？
 1.2 概率的角度 我们先来解决这个问题：假设每个人的生日在365天中任意一天的概率是相同的，那么23人中，至少两人的生日在同一天的概率是多少？
 从问题的反面来考虑会比较容易，记事件$A$为所有人的生日都不同，那么这个事件的反面事件$B$就是至少两人的生日在同一天。我们所要求的就是： $$P(B)=1-P(A)$$ 考察事件$A$：由于每个人的生日在一年中任何一天的概率是相同的，因此分母（所有可能的组合）为：$365^{23}$，即每个人的生日都有可能在365天中任意一天。分子为：$P_{365}^{23}$，可以这么考虑：第1个人选365天中任意一天，第2个人在剩下364天里选一天…以此类推。因此，最终我们要计算的概率： $$P(B)=1-\frac{365\cdot364\cdot...\cdot(365-23&#43;1)}{365^{23}}\approx0.507$$ 令人惊讶的是，这个概率竟然在50%左右！2014世界杯共有32支球队参加，每支球队有队员同天生日的概率大概是50%，那么计算一下期望，会发现大约有16支球队的球员存在同天生日的情况，与实际情况完全相符。
@@ -53,7 +53,7 @@ import matplotlib.pyplot as plt import math # Define the function f(n) def f(n):
 import matplotlib.pyplot as plt import math # Define the function f(n) def f(n): if n &lt;= 1: return 0 else: p_a = math.perm(365, n)/(365**n) return round(1 - p_a, 5) # Generate values n_values = list(range(1,101)) f_values = [f(n) for n in n_values] # Plot f(n) plt.">
   <meta itemprop="datePublished" content="2024-08-08T21:29:42+08:00">
   <meta itemprop="dateModified" content="2024-08-08T21:29:42+08:00">
-  <meta itemprop="wordCount" content="301">
+  <meta itemprop="wordCount" content="394">
   <meta itemprop="keywords" content="Math,Probability">
 <meta name="referrer" content="no-referrer-when-downgrade" />
 
@@ -261,7 +261,7 @@ import matplotlib.pyplot as plt import math # Define the function f(n) def f(n):
 </header>
   <main>
 
-<h1>古典概型和一些经典问题(更新中)</h1>
+<h1>古典概型及一些经典问题</h1>
 <p>
   <i>
     <time datetime='2024-08-08' pubdate>
@@ -409,9 +409,9 @@ $$
 P(A_1A_2...A_n)=P(A_1)P(A_2|A_1)P(A_3|A_1A_2)...P(A_n|A_1A_2...A_n)
 $$
 <h4 id="32-三门问题">3.2 三门问题</h4>
-<p>在参加一档电视节目中，你参加了这样一个游戏：你的面前有三扇门，其中一扇门后面有大奖，而另外两扇门后面只是山羊，现在，你选定了一扇门后，主持人打开了一扇后面有山羊的门（主持人知道三扇门后面分别是什么，他会选择一扇有山羊的门打开）。接着主持人问你：你是要坚持原来的选择，还是换一扇门呢？哪种选择更有可能获得大奖？
-<img src="pics/Fig.2_doors.png" alt="三门问题" title="三门问题">
-我们来看看这个游戏所有可能的情况，用一个表格列出来：</p>
+<p>在参加一档电视节目中，你参加了这样一个游戏：你的面前有三扇门，其中一扇门后面有大奖，而另外两扇门后面只是山羊，现在，你选定了一扇门后，主持人打开了一扇后面有山羊的门（主持人知道三扇门后面分别是什么，他会选择一扇有山羊的门打开）。接着主持人问你：你是要坚持原来的选择，还是换一扇门呢？哪种选择更有可能获得大奖？</p>
+<p><img src="pics/Fig.2_doors.png" alt="三门问题" title="三门问题"></p>
+<p>我们来看看这个游戏所有可能的情况，用一个表格列出来：</p>
 <table>
 <thead>
 <tr>
@@ -456,15 +456,15 @@ $$
 P(A)=P(AB_1)+P(AB_2)+...+P(AB_n)=P(A|B_1)P(B_1)+...+P(AB_n|B_n)P(B_n)
 $$
 <h4 id="42-n门问题">4.2 $n$门问题</h4>
-<p>在3.2节中，我们讨论了经典的三门问题，这里我们来看一下这个问题的变种：假设现在你的面前有<strong>9扇门</strong>，其中<strong>1扇门</strong>后面是车，而另外<strong>8扇门</strong>后面都是羊。你首先随意选择了一扇门，之后，主持人打开了<strong>7扇</strong>后面是羊的门，请问这个时候，选择换门能得到汽车大奖的概率是多少？
-<img src="pics/Fig.3_doors.png" alt="9扇门的情况" title="9扇门的情况"></p>
+<p>在3.2节中，我们讨论了经典的三门问题，这里我们来看一下这个问题的变种：假设现在你的面前有<strong>9扇门</strong>，其中<strong>1扇门</strong>后面是车，而另外<strong>8扇门</strong>后面都是羊。你首先随意选择了一扇门，之后，主持人打开了<strong>7扇</strong>后面是羊的门，请问这个时候，选择换门能得到汽车大奖的概率是多少？</p>
+<p><img src="pics/Fig.3_doors.png" alt="9扇门的情况" title="9扇门的情况"></p>
 <p>我们设事件$A$：换门之后中大奖，事件$B_i$：最初选择了第$i$扇门。假设大奖在第一扇门后面，那么我们可以知道：$P(A|B_1)=0,P(A|B_i)=1(i=2,3,&hellip;,9)$。由于最初我们选择的门是随机的，也就是选择任意一扇门的概率都是$\frac{1}{9}$。我们关心的是事件$A$，于是根据全概率公式，有：
 </p>
 $$
 P(A)=P(AB_1)+P(AB_2)+...+P(AB_9)=P(A|B_1)P(B_1)+...+P(AB_9|B_9)P(B_9)
 $$
 $$
-P(A)=0\cdot\frac{1}{9}+1\cdot\frac{1}{9}+...+1\cdot\frac{1}{9}=\frac{8}{9}
+\Rightarrow P(A)=0\cdot\frac{1}{9}+1\cdot\frac{1}{9}+...+1\cdot\frac{1}{9}=\frac{8}{9}
 $$
 <h3 id="5-贝叶斯bayesian公式">5 贝叶斯(Bayesian)公式</h3>
 <h4 id="51-书本中的贝叶斯公式">5.1 书本中的贝叶斯公式</h4>
@@ -474,9 +474,8 @@ $$
 P(B_i|A)=\frac{P(AB_i)}{P(A)}=\frac{P(AB_i)}{P(AB_1)+P(AB_2)+...+P(AB_n)}=\frac{P(A|B_i)P(B_i)}{\Sigma_{i=1}^nP(A|B_i)P(B_i)}
 $$
 <p>
-其中，$P(B_i)$称为先验概率(prior probability)，$P(B_i|A)$称为后验概率(posterior probability)，$P(A|B_i)$称为似然(likelihood)。
-该公式也可以用下图来表示，也就是计算所有橙色部分中$AB_i$的比例：
-<img src="pics/Fig.4_Bayse.png" alt="贝叶斯公式" title="贝叶斯公式"></p>
+其中，$P(B_i)$称为先验概率(prior probability)，$P(B_i|A)$称为后验概率(posterior probability)，$P(A|B_i)$称为似然(likelyhood)。该公式也可以用下图来表示，也就是计算所有橙色部分中$AB_i$的比例：</p>
+<p><img src="pics/Fig.4_Bayse.png" alt="贝叶斯公式" title="贝叶斯公式"></p>
 <h4 id="52-不只是条件概率">5.2 不只是条件概率</h4>
 <blockquote>
 <p><a href="https://www.bilibili.com/video/BV19V411o7Pu/?vd_source=a2a18dc9f88f7729b1fcb970a821cb97">贝叶斯公式的内涵-张颢老师</a></p>
@@ -487,8 +486,8 @@ $$
  P(B|A)=\frac{P(A|B)P(B)}{P(B)}
  $$
 <p>
-但实际上，贝叶斯公式揭示了人类(机器)学习的本质。
-<img src="pics/Fig.5_realBayse.png" alt="贝叶斯公式" title="贝叶斯公式"></p>
+但实际上，贝叶斯公式揭示了人类(机器)学习的本质。</p>
+<p><img src="pics/Fig.5_realBayse.png" alt="贝叶斯公式" title="贝叶斯公式"></p>
 <p>在图中，$A$表示数据，$P(B|A)$则是对于所看到的数据，我们的认知是什么；在右侧的分子上，$P(B)$代表了我们的初始认知，或者称为初始状态；$P(A|B)$就是我们的认知(学习)过程。</p>
 <p>那么，这究竟揭示了什么样的道理呢？首先，<strong>不存在客观的认识过程</strong>。对于$P(A|B)$而言，如果我们的眼光是绝对客观的，也就是说，我们看到的是数据本身，那么很容易就能得到：$P(A|B)=P(A)$，即我们的认识$B$和信息(数据)$A$是相互独立的。此时：
 </p>
@@ -501,6 +500,95 @@ $$
 <p>如何才能消除偏见呢？最直接且有效的办法就是我们需要更好的$A$。接触到更多(甚至是与我们的认知$B$相悖)的信息，是打破偏见，破除信息茧房最有效的手段。这也说明了为什么偏见如此常见——平台的算法总是会有意识的给我们推送符合我们认识的内容。因此，认识到偏见普遍存在，有意识的去寻找反面材料，是破除偏见的开始。</p>
 <p>此外，<strong>贝叶斯公式是机器学习过程的高度抽象</strong>。机器/深度学习最重要的过程就是<code>training</code>，不论我们模型的初始状态是有预训练参数也好，一片空白也罢，都可以用$P(B)$表示；而$P(A|B)$就是所设计的训练过程。我们希望在给定数据$A$的情况下，设计尽可能好的训练流程，使得机器能获得接近甚至超过人类的认知$P(B|A)$。</p>
 <p>深刻认识贝叶斯公式，将有利于我们建立正确的学习和认知方法。</p>
+<h3 id="6-独立性">6 独立性</h3>
+<h4 id="61-两事件互相独立">6.1 两事件互相独立</h4>
+<p>事件$A$和$B$独立的定义是：
+</p>
+$$
+P(A|B)=P(A)
+$$
+<p>
+或：
+</p>
+$$
+P(AB)=P(A)P(B)
+$$
+<p>
+独立(independent)和不相关(uncorrelated)是不一样的。结论是：<strong>独立一定不相关，而不相关未必独立</strong>。不相关是指两事件的相关系数为0，即两事件之间没有<strong>线性关系</strong>。</p>
+<p>不相关且独立的例子很常见，如抛掷两次公平的硬币，这两次抛掷的结果不相关，且互相独立。我们看一个不相关但不独立的例子：</p>
+<p>设$X\sim N(0,1),Y=X^2$。我们先来证明这两个随机变量不相关：
+</p>
+$$
+\because X\sim N(0,1)
+$$
+$$
+\therefore E[X]=0;E[Y]=E[X^2]=\sigma_X^2+\mu_X^2=1
+$$
+$$
+COV[X,Y]=E[XY]-E[X]E[Y]=E[X^3]-E[X]E[Y]=E[X^3]
+$$
+$$
+\because X\sim N(0,1)
+$$
+$$
+\therefore E[X^3]=0\Rightarrow COV[X,Y]=0
+$$
+<p>
+因此这两个事件不相关。而$X$和$Y$并不独立，若$X=0$，则必有$Y=0$，因此这两个变量互不独立。</p>
+<h4 id="62-多个事件的独立性">6.2 多个事件的独立性</h4>
+<p>考虑三个事件$A,B,C$,如果他们满足：
+</p>
+$$
+P(AB)=P(A)P(B)
+$$
+$$
+P(AC)=P(A)P(C)
+$$
+$$
+P(BC)=P(B)P(C)
+$$
+$$
+P(ABC)=P(A)P(B)P(C)
+$$
+<p>
+那么我们称$A,B,C$这三个事件相互独立。如果只满足前三个等式，则称事件$A,B,C$两两独立。</p>
+<p>下面这个例子中，三个事件两两独立(满足前三个等式)，而不相互独立(不满足最后一个等式)：
+</p>
+$$
+\Omega=\{1,2,3,4\};A=\{1,2\},B=\{1,3\},C=\{1,4\}
+$$
+<p>
+很容易可以算出：
+</p>
+$$
+P(A)=\frac{1}{2},P(B)=\frac{1}{2},P(C)=\frac{1}{2}
+$$
+$$
+P(AB)=P(A)P(B)=\frac{1}{4},P(BC)=P(B)P(C)=\frac{1}{4},P(AC)=P(A)P(C)=\frac{1}{4}
+$$
+<p>
+但当我们计算$P(ABC)$时会发现：
+</p>
+$$
+P(ABC)=P(\{1\})=\frac{1}{4}\neq P(A)P(B)P(C)
+$$
+<p>
+推广到$n$个事件的情况，若$n$个事件$A_1,A_2,&hellip;,A_n$相互独立，则他们要满足以下等式：
+</p>
+$$
+P(A_iA_j)=P(A_i)P(A_j),1\leq i\leq j\leq n
+$$
+$$
+P(A_iA_jA_k)=P(A_i)P(A_j)P(A_k), 1\leq i\leq j\leq k\leq n
+$$
+$$
+...
+$$
+$$
+P(A_1A_2...A_n)=P(A_1)P(A_2)...P(A_n)
+$$
+<p>
+共需要满足$C_n^2+C_n^3+&hellip;+C_n^n=2^n-n-1$个式子。</p>
 
 </content>
 
