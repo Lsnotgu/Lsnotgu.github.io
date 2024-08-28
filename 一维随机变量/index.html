@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>一维随机变量 | Another archive</title>
+<meta name="title" content="一维随机变量" />
+<meta name="description" content="1 什么是随机变量 随机变量的本质就是函数。和一般的函数不同，随机变量是事件到函数值的映射。为了更明确这一点，我们以最简单的掷骰子为例，一颗公平6面筛的投掷结果得到1~6点的几率是相等的。设随机变量$X$，那么，我们可以定义：$$X(投掷结果为1)=1$$$$X(投掷结果为2)=2$$$$...$$$$X(投掷结果为6)=6$$而为了简单起见，我们把上述内容简写为$X=1,X=2,...,X=6$等。而现在我们就可以把概率和随机变量联系在一起了。令随机变量$Y$表示：骰子投掷结果到几率的映射(注意这里$Y$也是函数)，那么我们可以套用复合函数的概念：$$Y(X=1)=\frac{1}{6}$$就表示：投掷结果为1($X=1$)的概率为$\frac{1}{6}$($Y(X=1)=\frac{1}{6}$)。
+下面先来看一下随机变量的正式定义：
+设$S$为样本空间，对于每一个随机试验的结果$e\in S$都有唯一的实数与它对应，得到一个定义在$S$上的单值函数$X=X(e)(e\in S)$就成为随机变量。
+从这个定义中我们可以看出，随机变量和普通函数最大的区别在于，随机变量是定义在样本空间上的，而样本空间是由随机试验结果的描述所构成的。
+引入随机变量的重要意义在于，我们把对事件概率的研究，抽象成为了对随机变量的研究。这有利于我们识别某一类具有共性的事件的发生规律。在下文的各种概率分布中，会更深刻的体会到这一点。
+2 离散型随机变量 2.1 二项分布 二项分布$X\sim Binomial(n,p)$所要抽象出的是这么一种情况：
+条件：1. 每次试验都是独立的，结果互不影响； 2. 试验的结果只有成功和失败两种。
+关心的事件及概率：$n$次试验，成功$k$次的几率为$C_n^kp^k(1-p)^{n-k}$
+2.2 泊松分布 2.2.1 引例：保险公司获利 保险公司推出学生意外伤害险，每位参保人需缴纳50元保费，出险时可获得2万元赔付。已知一年中的出险概率为0.15%，共有6000名学生参保。求保险公司在该意外伤害险中获利不少于6万元的概率？
+首先，每个学生是否出险是独立事件，那么6000人的出险情况显然服从二项分布。设有$X$为出险的学生数量，那么： $$P(50\cdot 6000-20000X\ge 60000)=P(X\le12)$$ $$\Rightarrow \Sigma_{k=0}^{12}C_{6000}^k0.0015^k(1-0.0015)^{6000-k}$$ 实际计算会比较复杂，因此为了求出近似解，引入泊松分布。
+2.2.2 泊松分布的推导 设事件发生的速率为每单位时间$\lambda$次，观察时间为$T$，随机变量$X$为观察时间内该事件发生的总次数。如果我们把观察的总时间$T$切分为很多个小段，每个小段的长度是$\delta_T$： 那么就会有$n=\frac{T}{\delta_T}$个小段，每一个小段事件发生的几率为$\lambda\delta_T=\frac{\lambda T}{n}$；而此时$n$个小段发生$X=x$次事件的几率服从二项分布，即$X\sim Binamal(n, \frac{\lambda T}{n})$，因此我们可以写出： $$P_X(x)=C_n^x(\frac{\lambda T}{n})^x(1-\frac{\lambda T}{n})^{n-x}$$ 当我们的$\delta_T$切分的足够小时，$n\rightarrow\infty$，于是上式化为： $$\lim_{n\to\infty}\frac{n!}{(n-x)!x!}(\frac{\lambda T}{n})^x(1-\frac{\lambda T}{n})^{n-x}=\lim_{n\to\infty}\frac{n\cdot(n-1)\cdot." />
+<meta name="keywords" content="math,probability," />
+
+
+<meta property="og:url" content="https://lsnotgu.github.io/%E4%B8%80%E7%BB%B4%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F/">
+  <meta property="og:site_name" content="Another archive">
+  <meta property="og:title" content="一维随机变量">
+  <meta property="og:description" content="1 什么是随机变量 随机变量的本质就是函数。和一般的函数不同，随机变量是事件到函数值的映射。为了更明确这一点，我们以最简单的掷骰子为例，一颗公平6面筛的投掷结果得到1~6点的几率是相等的。设随机变量$X$，那么，我们可以定义：$$X(投掷结果为1)=1$$$$X(投掷结果为2)=2$$$$...$$$$X(投掷结果为6)=6$$而为了简单起见，我们把上述内容简写为$X=1,X=2,...,X=6$等。而现在我们就可以把概率和随机变量联系在一起了。令随机变量$Y$表示：骰子投掷结果到几率的映射(注意这里$Y$也是函数)，那么我们可以套用复合函数的概念：$$Y(X=1)=\frac{1}{6}$$就表示：投掷结果为1($X=1$)的概率为$\frac{1}{6}$($Y(X=1)=\frac{1}{6}$)。
+下面先来看一下随机变量的正式定义：
+设$S$为样本空间，对于每一个随机试验的结果$e\in S$都有唯一的实数与它对应，得到一个定义在$S$上的单值函数$X=X(e)(e\in S)$就成为随机变量。
+从这个定义中我们可以看出，随机变量和普通函数最大的区别在于，随机变量是定义在样本空间上的，而样本空间是由随机试验结果的描述所构成的。
+引入随机变量的重要意义在于，我们把对事件概率的研究，抽象成为了对随机变量的研究。这有利于我们识别某一类具有共性的事件的发生规律。在下文的各种概率分布中，会更深刻的体会到这一点。
+2 离散型随机变量 2.1 二项分布 二项分布$X\sim Binomial(n,p)$所要抽象出的是这么一种情况：
+条件：1. 每次试验都是独立的，结果互不影响； 2. 试验的结果只有成功和失败两种。
+关心的事件及概率：$n$次试验，成功$k$次的几率为$C_n^kp^k(1-p)^{n-k}$
+2.2 泊松分布 2.2.1 引例：保险公司获利 保险公司推出学生意外伤害险，每位参保人需缴纳50元保费，出险时可获得2万元赔付。已知一年中的出险概率为0.15%，共有6000名学生参保。求保险公司在该意外伤害险中获利不少于6万元的概率？
+首先，每个学生是否出险是独立事件，那么6000人的出险情况显然服从二项分布。设有$X$为出险的学生数量，那么： $$P(50\cdot 6000-20000X\ge 60000)=P(X\le12)$$ $$\Rightarrow \Sigma_{k=0}^{12}C_{6000}^k0.0015^k(1-0.0015)^{6000-k}$$ 实际计算会比较复杂，因此为了求出近似解，引入泊松分布。
+2.2.2 泊松分布的推导 设事件发生的速率为每单位时间$\lambda$次，观察时间为$T$，随机变量$X$为观察时间内该事件发生的总次数。如果我们把观察的总时间$T$切分为很多个小段，每个小段的长度是$\delta_T$： 那么就会有$n=\frac{T}{\delta_T}$个小段，每一个小段事件发生的几率为$\lambda\delta_T=\frac{\lambda T}{n}$；而此时$n$个小段发生$X=x$次事件的几率服从二项分布，即$X\sim Binamal(n, \frac{\lambda T}{n})$，因此我们可以写出： $$P_X(x)=C_n^x(\frac{\lambda T}{n})^x(1-\frac{\lambda T}{n})^{n-x}$$ 当我们的$\delta_T$切分的足够小时，$n\rightarrow\infty$，于是上式化为： $$\lim_{n\to\infty}\frac{n!}{(n-x)!x!}(\frac{\lambda T}{n})^x(1-\frac{\lambda T}{n})^{n-x}=\lim_{n\to\infty}\frac{n\cdot(n-1)\cdot.">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2024-08-19T21:30:51+08:00">
+    <meta property="article:modified_time" content="2024-08-19T21:30:51+08:00">
+    <meta property="article:tag" content="Math">
+    <meta property="article:tag" content="Probability">
+
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="一维随机变量">
+  <meta name="twitter:description" content="1 什么是随机变量 随机变量的本质就是函数。和一般的函数不同，随机变量是事件到函数值的映射。为了更明确这一点，我们以最简单的掷骰子为例，一颗公平6面筛的投掷结果得到1~6点的几率是相等的。设随机变量$X$，那么，我们可以定义：$$X(投掷结果为1)=1$$$$X(投掷结果为2)=2$$$$...$$$$X(投掷结果为6)=6$$而为了简单起见，我们把上述内容简写为$X=1,X=2,...,X=6$等。而现在我们就可以把概率和随机变量联系在一起了。令随机变量$Y$表示：骰子投掷结果到几率的映射(注意这里$Y$也是函数)，那么我们可以套用复合函数的概念：$$Y(X=1)=\frac{1}{6}$$就表示：投掷结果为1($X=1$)的概率为$\frac{1}{6}$($Y(X=1)=\frac{1}{6}$)。
+下面先来看一下随机变量的正式定义：
+设$S$为样本空间，对于每一个随机试验的结果$e\in S$都有唯一的实数与它对应，得到一个定义在$S$上的单值函数$X=X(e)(e\in S)$就成为随机变量。
+从这个定义中我们可以看出，随机变量和普通函数最大的区别在于，随机变量是定义在样本空间上的，而样本空间是由随机试验结果的描述所构成的。
+引入随机变量的重要意义在于，我们把对事件概率的研究，抽象成为了对随机变量的研究。这有利于我们识别某一类具有共性的事件的发生规律。在下文的各种概率分布中，会更深刻的体会到这一点。
+2 离散型随机变量 2.1 二项分布 二项分布$X\sim Binomial(n,p)$所要抽象出的是这么一种情况：
+条件：1. 每次试验都是独立的，结果互不影响； 2. 试验的结果只有成功和失败两种。
+关心的事件及概率：$n$次试验，成功$k$次的几率为$C_n^kp^k(1-p)^{n-k}$
+2.2 泊松分布 2.2.1 引例：保险公司获利 保险公司推出学生意外伤害险，每位参保人需缴纳50元保费，出险时可获得2万元赔付。已知一年中的出险概率为0.15%，共有6000名学生参保。求保险公司在该意外伤害险中获利不少于6万元的概率？
+首先，每个学生是否出险是独立事件，那么6000人的出险情况显然服从二项分布。设有$X$为出险的学生数量，那么： $$P(50\cdot 6000-20000X\ge 60000)=P(X\le12)$$ $$\Rightarrow \Sigma_{k=0}^{12}C_{6000}^k0.0015^k(1-0.0015)^{6000-k}$$ 实际计算会比较复杂，因此为了求出近似解，引入泊松分布。
+2.2.2 泊松分布的推导 设事件发生的速率为每单位时间$\lambda$次，观察时间为$T$，随机变量$X$为观察时间内该事件发生的总次数。如果我们把观察的总时间$T$切分为很多个小段，每个小段的长度是$\delta_T$： 那么就会有$n=\frac{T}{\delta_T}$个小段，每一个小段事件发生的几率为$\lambda\delta_T=\frac{\lambda T}{n}$；而此时$n$个小段发生$X=x$次事件的几率服从二项分布，即$X\sim Binamal(n, \frac{\lambda T}{n})$，因此我们可以写出： $$P_X(x)=C_n^x(\frac{\lambda T}{n})^x(1-\frac{\lambda T}{n})^{n-x}$$ 当我们的$\delta_T$切分的足够小时，$n\rightarrow\infty$，于是上式化为： $$\lim_{n\to\infty}\frac{n!}{(n-x)!x!}(\frac{\lambda T}{n})^x(1-\frac{\lambda T}{n})^{n-x}=\lim_{n\to\infty}\frac{n\cdot(n-1)\cdot.">
+
+
+
+
+  <meta itemprop="name" content="一维随机变量">
+  <meta itemprop="description" content="1 什么是随机变量 随机变量的本质就是函数。和一般的函数不同，随机变量是事件到函数值的映射。为了更明确这一点，我们以最简单的掷骰子为例，一颗公平6面筛的投掷结果得到1~6点的几率是相等的。设随机变量$X$，那么，我们可以定义：$$X(投掷结果为1)=1$$$$X(投掷结果为2)=2$$$$...$$$$X(投掷结果为6)=6$$而为了简单起见，我们把上述内容简写为$X=1,X=2,...,X=6$等。而现在我们就可以把概率和随机变量联系在一起了。令随机变量$Y$表示：骰子投掷结果到几率的映射(注意这里$Y$也是函数)，那么我们可以套用复合函数的概念：$$Y(X=1)=\frac{1}{6}$$就表示：投掷结果为1($X=1$)的概率为$\frac{1}{6}$($Y(X=1)=\frac{1}{6}$)。
+下面先来看一下随机变量的正式定义：
+设$S$为样本空间，对于每一个随机试验的结果$e\in S$都有唯一的实数与它对应，得到一个定义在$S$上的单值函数$X=X(e)(e\in S)$就成为随机变量。
+从这个定义中我们可以看出，随机变量和普通函数最大的区别在于，随机变量是定义在样本空间上的，而样本空间是由随机试验结果的描述所构成的。
+引入随机变量的重要意义在于，我们把对事件概率的研究，抽象成为了对随机变量的研究。这有利于我们识别某一类具有共性的事件的发生规律。在下文的各种概率分布中，会更深刻的体会到这一点。
+2 离散型随机变量 2.1 二项分布 二项分布$X\sim Binomial(n,p)$所要抽象出的是这么一种情况：
+条件：1. 每次试验都是独立的，结果互不影响； 2. 试验的结果只有成功和失败两种。
+关心的事件及概率：$n$次试验，成功$k$次的几率为$C_n^kp^k(1-p)^{n-k}$
+2.2 泊松分布 2.2.1 引例：保险公司获利 保险公司推出学生意外伤害险，每位参保人需缴纳50元保费，出险时可获得2万元赔付。已知一年中的出险概率为0.15%，共有6000名学生参保。求保险公司在该意外伤害险中获利不少于6万元的概率？
+首先，每个学生是否出险是独立事件，那么6000人的出险情况显然服从二项分布。设有$X$为出险的学生数量，那么： $$P(50\cdot 6000-20000X\ge 60000)=P(X\le12)$$ $$\Rightarrow \Sigma_{k=0}^{12}C_{6000}^k0.0015^k(1-0.0015)^{6000-k}$$ 实际计算会比较复杂，因此为了求出近似解，引入泊松分布。
+2.2.2 泊松分布的推导 设事件发生的速率为每单位时间$\lambda$次，观察时间为$T$，随机变量$X$为观察时间内该事件发生的总次数。如果我们把观察的总时间$T$切分为很多个小段，每个小段的长度是$\delta_T$： 那么就会有$n=\frac{T}{\delta_T}$个小段，每一个小段事件发生的几率为$\lambda\delta_T=\frac{\lambda T}{n}$；而此时$n$个小段发生$X=x$次事件的几率服从二项分布，即$X\sim Binamal(n, \frac{\lambda T}{n})$，因此我们可以写出： $$P_X(x)=C_n^x(\frac{\lambda T}{n})^x(1-\frac{\lambda T}{n})^{n-x}$$ 当我们的$\delta_T$切分的足够小时，$n\rightarrow\infty$，于是上式化为： $$\lim_{n\to\infty}\frac{n!}{(n-x)!x!}(\frac{\lambda T}{n})^x(1-\frac{\lambda T}{n})^{n-x}=\lim_{n\to\infty}\frac{n\cdot(n-1)\cdot.">
+  <meta itemprop="datePublished" content="2024-08-19T21:30:51+08:00">
+  <meta itemprop="dateModified" content="2024-08-19T21:30:51+08:00">
+  <meta itemprop="wordCount" content="234">
+  <meta itemprop="keywords" content="Math,Probability">
+<meta name="referrer" content="no-referrer-when-downgrade" />
+
+  <style>
+  body {
+    font-family: Verdana, sans-serif;
+    margin: auto;
+    padding: 20px;
+    max-width: 720px;
+    text-align: left;
+    background-color: #fff;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.5;
+    color: #444;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  strong,
+  b {
+    color: #222;
+  }
+
+  a {
+    color: #3273dc;
+     
+  }
+
+  .title {
+    text-decoration: none;
+    border: 0;
+  }
+
+  .title span {
+    font-weight: 400;
+  }
+
+  nav a {
+    margin-right: 10px;
+  }
+
+  textarea {
+    width: 100%;
+    font-size: 16px;
+  }
+
+  input {
+    font-size: 16px;
+  }
+
+  content {
+    line-height: 1.6;
+  }
+
+  table {
+    width: 100%;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  code {
+    padding: 2px 5px;
+    background-color: #f2f2f2;
+  }
+
+  pre code {
+    color: #222;
+    display: block;
+    padding: 20px;
+    white-space: pre-wrap;
+    font-size: 14px;
+    overflow-x: auto;
+  }
+
+  div.highlight pre {
+    background-color: initial;
+    color: initial;
+  }
+
+  div.highlight code {
+    background-color: unset;
+    color: unset;
+  }
+
+  blockquote {
+    border-left: 1px solid #999;
+    color: #222;
+    padding-left: 20px;
+    font-style: italic;
+  }
+
+  footer {
+    padding: 25px;
+    text-align: center;
+  }
+
+  .helptext {
+    color: #777;
+    font-size: small;
+  }
+
+  .errorlist {
+    color: #eba613;
+    font-size: small;
+  }
+
+   
+  ul.blog-posts {
+    list-style-type: none;
+    padding: unset;
+  }
+
+  ul.blog-posts li {
+    display: flex;
+  }
+
+  ul.blog-posts li span {
+    flex: 0 0 130px;
+  }
+
+  ul.blog-posts li a:visited {
+    color: #8b6fcb;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    body {
+      background-color: #333;
+      color: #ddd;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    strong,
+    b {
+      color: #eee;
+    }
+
+    a {
+      color: #8cc2dd;
+    }
+
+    code {
+      background-color: #777;
+    }
+
+    pre code {
+      color: #ddd;
+    }
+
+    blockquote {
+      color: #ccc;
+    }
+
+    textarea,
+    input {
+      background-color: #252525;
+      color: #ddd;
+    }
+
+    .helptext {
+      color: #aaa;
+    }
+  }
+
+</style>
+
+
+  
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<script>
+  MathJax = {
+    tex: {
+      displayMath: [['\\[', '\\]'], ['$$', '$$']],  
+      inlineMath: [['$', '$']]                  
+    }
+  };
+</script>
+
+  
+</head>
+
+<body>
+  <header><a href="/" class="title">
+  <h2>Another archive</h2>
+</a>
+<nav><a href="/">Home</a>
+
+<a href="/bear/">Bear</a>
+
+
+<a href="/blog">Blog</a>
+
+</nav>
+</header>
+  <main>
+
+<h1>一维随机变量</h1>
+<p>
+  <i>
+    <time datetime='2024-08-19' pubdate>
+      19 Aug, 2024
+    </time>
+  </i>
+</p>
+
+<content>
+  <h3 id="1-什么是随机变量">1 什么是随机变量</h3>
+<p><strong>随机变量的本质就是函数</strong>。和一般的函数不同，随机变量是<strong>事件</strong>到<strong>函数值</strong>的映射。为了更明确这一点，我们以最简单的掷骰子为例，一颗公平6面筛的投掷结果得到1~6点的几率是相等的。设随机变量$X$，那么，我们可以定义：
+$$
+X(投掷结果为1)=1
+$$
+$$
+X(投掷结果为2)=2
+$$
+$$
+...
+$$
+$$
+X(投掷结果为6)=6
+$$
+而为了简单起见，我们把上述内容简写为$X=1,X=2,...,X=6$等。而现在我们就可以把概率和随机变量联系在一起了。令随机变量$Y$表示：骰子投掷结果到几率的映射(注意这里$Y$也是函数)，那么我们可以套用复合函数的概念：
+$$
+Y(X=1)=\frac{1}{6}
+$$
+就表示：投掷结果为1($X=1$)的概率为$\frac{1}{6}$($Y(X=1)=\frac{1}{6}$)。</p>
+<p>下面先来看一下随机变量的正式定义：</p>
+<p>设$S$为样本空间，对于每一个随机试验的结果$e\in S$都有<strong>唯一</strong>的实数与它对应，得到一个定义在$S$上的单值函数$X=X(e)(e\in S)$就成为随机变量。</p>
+<p>从这个定义中我们可以看出，随机变量和普通函数最大的区别在于，随机变量是定义在样本空间上的，而样本空间是由<strong>随机试验结果的描述</strong>所构成的。</p>
+<p>引入随机变量的重要意义在于，我们把对事件概率的研究，抽象成为了对随机变量的研究。这有利于我们识别某一类具有共性的事件的发生规律。在下文的各种概率分布中，会更深刻的体会到这一点。</p>
+<h3 id="2-离散型随机变量">2 离散型随机变量</h3>
+<h4 id="21-二项分布">2.1 二项分布</h4>
+<p>二项分布$X\sim Binomial(n,p)$所要抽象出的是这么一种情况：</p>
+<p>条件：1. 每次试验都是独立的，结果互不影响； 2. 试验的结果只有成功和失败两种。</p>
+<p>关心的事件及概率：$n$次试验，成功$k$次的几率为$C_n^kp^k(1-p)^{n-k}$</p>
+<h3 id="22-泊松分布">2.2 泊松分布</h3>
+<h4 id="221-引例保险公司获利">2.2.1 引例：保险公司获利</h4>
+<p>保险公司推出学生意外伤害险，每位参保人需缴纳50元保费，出险时可获得2万元赔付。已知一年中的出险概率为0.15%，共有6000名学生参保。求保险公司在该意外伤害险中获利不少于6万元的概率？</p>
+<p>首先，每个学生是否出险是独立事件，那么6000人的出险情况显然服从二项分布。设有$X$为出险的学生数量，那么：
+</p>
+$$
+P(50\cdot 6000-20000X\ge 60000)=P(X\le12)
+$$
+$$
+\Rightarrow \Sigma_{k=0}^{12}C_{6000}^k0.0015^k(1-0.0015)^{6000-k}
+$$
+<p>
+实际计算会比较复杂，因此为了求出近似解，引入泊松分布。</p>
+<h4 id="222-泊松分布的推导">2.2.2 泊松分布的推导</h4>
+<p>设事件发生的速率为每单位时间$\lambda$次，观察时间为$T$，随机变量$X$为观察时间内该事件发生的总次数。如果我们把观察的总时间$T$切分为很多个小段，每个小段的长度是$\delta_T$：
+<img src="pics/Fig.1_cut_T.png" alt="将T切分为n段" title="将T切分为n段">
+那么就会有$n=\frac{T}{\delta_T}$个小段，每一个小段事件发生的几率为$\lambda\delta_T=\frac{\lambda T}{n}$；而此时$n$个小段发生$X=x$次事件的几率服从二项分布，即$X\sim Binamal(n, \frac{\lambda T}{n})$，因此我们可以写出：
+</p>
+$$
+P_X(x)=C_n^x(\frac{\lambda T}{n})^x(1-\frac{\lambda T}{n})^{n-x}
+$$
+<p>
+当我们的$\delta_T$切分的足够小时，$n\rightarrow\infty$，于是上式化为：
+</p>
+$$
+\lim_{n\to\infty}\frac{n!}{(n-x)!x!}(\frac{\lambda T}{n})^x(1-\frac{\lambda T}{n})^{n-x}=\lim_{n\to\infty}\frac{n\cdot(n-1)\cdot...\cdot(n-x+1)}{x!}(\frac{\lambda T}{n})^x(1-\frac{\lambda T}{n})^{n-x}
+$$
+<p>
+而其中$n\cdot(n-1)\cdot&hellip;\cdot(n-x+1)$和$(\frac{\lambda T}{n})^x$都有$x$项，因此上式可写为：
+</p>
+$$
+\lim_{n\to\infty}\frac{n}{n}\frac{n-1}{n}...\frac{n-x+1}{n}\frac{(\lambda T)^x}{x!}(1-\frac{\lambda T}{n})^n(1-\frac{\lambda T}{n})^{-x}
+$$
+<p>
+由于$n\to\infty$，因此前面这$x$项每一项都是1；最后一项中的$-\frac{\lambda T}{n}\to0$；而$x$和极限无关，因此上式继续化为：
+</p>
+$$
+\frac{(\lambda T)^x}{x!}\lim_{n\to\infty}(1-\frac{\lambda T}{n})^n=\frac{(\lambda T)^x}{x!}\lim_{n\to\infty}(1+\frac{-\lambda T}{n})^n=\frac{(\lambda T)^x}{x!}e^{-\lambda T}
+$$
+<p>
+这样一来，我们就得到了泊松分布的分布函数，若$X\sim Poisson(\lambda T)$，则其概率密度函数为$\frac{(\lambda T)^x}{x!}e^{-\lambda T}$，简单来说，泊松分布式二项分布的近似分布，关心的是<strong>大量</strong>(二项分布中$n$很大)试验中<strong>稀有</strong>(二项分布中$p$很小)事件发生的概率。</p>
+<p>那么，泊松分布和二项分布究竟有多接近呢？我们固定$\lambda T=2$，使用二项分布中不同的$n\cdot p$组合绘图看看，使用<code>Python</code>绘图的代码如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Python" data-lang="Python"><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> scipy.stats <span style="color:#f92672">import</span> binom
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> scipy.stats <span style="color:#f92672">import</span> poisson
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#66d9ef">as</span> plt
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>x_values <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>arange(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">11</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># parameters of Binomial</span>
+</span></span><span style="display:flex;"><span>n1, p1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">0.1</span>
+</span></span><span style="display:flex;"><span>n2, p2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">50</span>, <span style="color:#ae81ff">0.04</span>
+</span></span><span style="display:flex;"><span>n3, p3 <span style="color:#f92672">=</span> <span style="color:#ae81ff">200</span>, <span style="color:#ae81ff">0.01</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># paramater of Poisson</span>
+</span></span><span style="display:flex;"><span>lambda_T <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>  
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Calculate PMF</span>
+</span></span><span style="display:flex;"><span>binomial_pmf1 <span style="color:#f92672">=</span> binom<span style="color:#f92672">.</span>pmf(x_values, n1, p1)
+</span></span><span style="display:flex;"><span>binomial_pmf2 <span style="color:#f92672">=</span> binom<span style="color:#f92672">.</span>pmf(x_values, n2, p2)
+</span></span><span style="display:flex;"><span>binomial_pmf3 <span style="color:#f92672">=</span> binom<span style="color:#f92672">.</span>pmf(x_values, n3, p3)
+</span></span><span style="display:flex;"><span>poisson_pmf <span style="color:#f92672">=</span> poisson<span style="color:#f92672">.</span>pmf(x_values, lambda_T)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Draw lines</span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>figure(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">3</span>), dpi<span style="color:#f92672">=</span><span style="color:#ae81ff">300</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>plot(x_values, binomial_pmf1, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;chocolate&#39;</span>, linewidth<span style="color:#f92672">=</span><span style="color:#ae81ff">0.8</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;Binomial n=</span><span style="color:#e6db74">{</span>n1<span style="color:#e6db74">}</span><span style="color:#e6db74">, p=</span><span style="color:#e6db74">{</span>p1<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>plot(x_values, binomial_pmf2, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;red&#39;</span>, linewidth<span style="color:#f92672">=</span><span style="color:#ae81ff">0.8</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;Binomial n=</span><span style="color:#e6db74">{</span>n2<span style="color:#e6db74">}</span><span style="color:#e6db74">, p=</span><span style="color:#e6db74">{</span>p2<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>plot(x_values, binomial_pmf3, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;coral&#39;</span>, linewidth<span style="color:#f92672">=</span><span style="color:#ae81ff">0.8</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;Binomial n=</span><span style="color:#e6db74">{</span>n3<span style="color:#e6db74">}</span><span style="color:#e6db74">, p=</span><span style="color:#e6db74">{</span>p3<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>plot(x_values, poisson_pmf, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;royalblue&#39;</span>, linewidth<span style="color:#f92672">=</span><span style="color:#ae81ff">0.8</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;Poisson λT=</span><span style="color:#e6db74">{</span>lambda_T<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">&#39;PMF: Binomial v.s. Poisson&#39;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>ylim(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0.3</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>legend()
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>show()
+</span></span></code></pre></div><p>绘制结果为：</p>
+<p><img src="pics/Fig.2_binomial_poisson.png" alt="Binamial和Poisson的PMF" title="Binamial和Poisson的PMF"></p>
+<p>不难看出，当二项分布越来越<strong>大量</strong>($n$越大)且<strong>稀有</strong>($p$越小)时，泊松分布就越接近二项分布。图中当$n=200, p=0.01$时，二项分布的概率密度函数几乎与泊松分布的重合。因此泊松分布是二项分布误差相当小的近似。</p>
+<h4 id="223-泊松分布的应用例题">2.2.3 泊松分布的应用例题</h4>
+<p>在保险问题中，$T=6000,\lambda=0.15%$，可以用泊松分布近似求解，即$X\sim Poisson(9)$，解不等式$P(X\le12)$，可以通过查表或计算器计算，得到概率值约为0.876。</p>
+<p>再来看另外一个例题：工厂内有900台设备，各台机器工作相互独立，且每台机器发生故障的概率为0.01。当一台设备故障时，需要一名工人来处理。那么，工厂至少要配备多少工人，才能使得有机器出现故障且无工人及时维修的概率小于0.01？</p>
+<p>设需要配备$n$个人，同时发生故障的机器台数$X\sim Bin(900, 0.01)$显然可以用泊松分布近似。即$X\sim Poisson(9)$；机器有故障，而没有工人及时维修，也就是说出现故障的机器台数大于工人个数，即:
+</p>
+$$
+P(X>n)<0.01
+$$
+$$
+\Rightarrow 1-P(X<=n)<0.01\Leftrightarrow P(X<=n)>0.99
+$$
+$$
+\Sigma_{x=0}^{n}\frac{9^x}{x!}e^{-9}>0.99
+$$
+<p>
+查泊松分布的累积概率分布表可以知道，当$\lambda T=9$时，使得上式满足的$n$至少为17，因此工厂至少需要配备17名工人。</p>
+<p><img src="pics/Fig.3_Poisson_CDF.jpg" alt="Poisson的CDF" title="Poisson的CDF"></p>
+
+</content>
+
+<script src="https://giscus.app/client.js"
+        data-repo="lsnotgu/lsnotgu.github.io"
+        data-repo-id="R_kgDOMf6mdA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOMf6mdM4Chj2B"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="preferred_color_scheme"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+<p>
+  
+  <a href="https://lsnotgu.github.io/blog/math/">#Math</a>
+  
+  <a href="https://lsnotgu.github.io/blog/probability/">#Probability</a>
+  
+</p>
+
+  </main>
+  <footer>Made with <a href="https://github.com/janraasch/hugo-bearblog/">Hugo ʕ•ᴥ•ʔ Bear</a>
+</footer>
+
+    
+</body>
+
+</html>
