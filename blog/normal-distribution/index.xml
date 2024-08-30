@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Normal Distribution on Another archive</title>
+    <link>http://localhost:1313/blog/normal-distribution/</link>
+    <description>Recent content in Normal Distribution on Another archive</description>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <copyright>Copyright © 2024, icee.</copyright>
+    <lastBuildDate>Thu, 29 Aug 2024 20:21:50 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/blog/normal-distribution/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Wallis公式</title>
+      <link>http://localhost:1313/wallis%E5%85%AC%E5%BC%8F/</link>
+      <pubDate>Thu, 29 Aug 2024 20:21:50 +0800</pubDate>
+      <guid>http://localhost:1313/wallis%E5%85%AC%E5%BC%8F/</guid>
+      <description>Wallis公式应用于Stirling公式的证明，该公式本身看起来是乘积式，但是实际上和圆周率$\pi$有关系。该公式的表达式为： $$&#xD;\prod \limits_{i=0}^n\frac{4n^2}{4n^2-1}=\prod \limits_{i=0}^n\frac{2n}{2n-1}\frac{2n}{2n+1}=\frac{\pi}{2}&#xD;$$ 写成实际的数字更好看一些： $$&#xD;\lim_{n\to+\infty}\frac{2\cdot2\cdot4\cdot4\cdot...\cdot(2n)\cdot(2n)}{1\cdot3\cdot5\cdot7\cdot...\cdot(2n-1)\cdot(2n+1)}=\frac{\pi}{2}&#xD;$$ 公式的来源 这个公式来自于同名的Wallis积分： $$&#xD;I_n=\int_0^{\frac{\pi}{2}}sin^nxdx&#xD;\\\\\\&#xD;=123&#xD;$$ </description>
+    </item>
+    <item>
+      <title>Stirling公式</title>
+      <link>http://localhost:1313/stirling%E5%85%AC%E5%BC%8F/</link>
+      <pubDate>Thu, 29 Aug 2024 19:41:22 +0800</pubDate>
+      <guid>http://localhost:1313/stirling%E5%85%AC%E5%BC%8F/</guid>
+      <description>斯特林公式(Stirling&amp;rsquo;s formula)是推导正态分布中必不可少的工具。该公式是阶乘(factorial)的渐进近似，但实际上在$n$较小时近似效果已经很好。该公式的表达式为： $$ n!\sim \sqrt{2\pi n}(\frac{n}{e})^n $$ </description>
+    </item>
+  </channel>
+</rss>

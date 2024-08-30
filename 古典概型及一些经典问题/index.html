@@ -378,10 +378,11 @@ $$
 那么我们给$P(A)$在最前面加上$(1-1)$就得到了：
 </p>
 $$
-P(A)=1-1+1-\frac{1}{2!}+\frac{1}{3!}-...+(-1)^{N-1}\frac{1}{N}
-$$
-$$
-\Rightarrow P(A)=1-(1-1+\frac{1}{2!}-\frac{1}{3!}+...-(-1)^{N-1}\frac{1}{N})
+\begin{align*}
+&P(A)=1-1+1-\frac{1}{2!}+\frac{1}{3!}-...+(-1)^{N-1}\frac{1}{N}
+\\
+\Rightarrow &P(A)=1-(1-1+\frac{1}{2!}-\frac{1}{3!}+...-(-1)^{N-1}\frac{1}{N})
+\end{align*}
 $$
 <p>
 而括号内的部分正好是当$x=1$时$e^x$的展开式，因此当$N\rightarrow+\infty$时，$P(A)$的极限约为$1-e^{-1}\approx0.632$。</p>
@@ -539,16 +540,15 @@ $$
 <p>考虑三个事件$A,B,C$,如果他们满足：
 </p>
 $$
-P(AB)=P(A)P(B)
-$$
-$$
-P(AC)=P(A)P(C)
-$$
-$$
-P(BC)=P(B)P(C)
-$$
-$$
-P(ABC)=P(A)P(B)P(C)
+\begin{align*}
+P(AB)&=P(A)P(B)
+\\
+P(AC)&=P(A)P(C)
+\\
+P(BC)&=P(B)P(C)
+\\
+P(ABC)&=P(A)P(B)P(C)
+\end{align*}
 $$
 <p>
 那么我们称$A,B,C$这三个事件相互独立。如果只满足前三个等式，则称事件$A,B,C$两两独立。</p>
@@ -561,10 +561,11 @@ $$
 很容易可以算出：
 </p>
 $$
+\begin{gather*}
 P(A)=\frac{1}{2},P(B)=\frac{1}{2},P(C)=\frac{1}{2}
-$$
-$$
+\\
 P(AB)=P(A)P(B)=\frac{1}{4},P(BC)=P(B)P(C)=\frac{1}{4},P(AC)=P(A)P(C)=\frac{1}{4}
+\end{gather*}
 $$
 <p>
 但当我们计算$P(ABC)$时会发现：
@@ -576,16 +577,15 @@ $$
 推广到$n$个事件的情况，若$n$个事件$A_1,A_2,&hellip;,A_n$相互独立，则他们要满足以下等式：
 </p>
 $$
+\begin{gather*}
 P(A_iA_j)=P(A_i)P(A_j),1\leq i\leq j\leq n
-$$
-$$
+\\
 P(A_iA_jA_k)=P(A_i)P(A_j)P(A_k), 1\leq i\leq j\leq k\leq n
-$$
-$$
+\\
 ...
-$$
-$$
+\\
 P(A_1A_2...A_n)=P(A_1)P(A_2)...P(A_n)
+\end{gather*}
 $$
 <p>
 共需要满足$C_n^2+C_n^3+&hellip;+C_n^n=2^n-n-1$个式子。</p>

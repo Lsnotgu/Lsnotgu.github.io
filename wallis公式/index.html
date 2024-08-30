@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Wallis公式 | Another archive</title>
+<meta name="title" content="Wallis公式" />
+<meta name="description" content="Wallis公式应用于Stirling公式的证明，该公式本身看起来是乘积式，但是实际上和圆周率$\pi$有关系。该公式的表达式为： $$\prod \limits_{i=1}^n\frac{4n^2}{4n^2-1}=\prod \limits_{i=1}^n\frac{2n}{2n-1}\frac{2n}{2n&#43;1}=\frac{\pi}{2}$$ 写成实际的数字更好看一些： $$\lim_{n\to&#43;\infty}\frac{2\cdot2\cdot4\cdot4\cdot...\cdot(2n)\cdot(2n)}{1\cdot3\cdot5\cdot7\cdot...\cdot(2n-1)\cdot(2n&#43;1)}=\frac{\pi}{2}$$ 公式的来源 这个公式来自于同名的Wallis积分，可以使用分部积分进行推导： $$\begin{align*}I_n&=\int_0^{\frac{\pi}{2}}sin^nxdx\\&=-\int_0^{\frac{\pi}{2}}sin^{n-1}xdcosx\\&=-(cosxsin^{n-1}x\big|_0^{\frac{\pi}{2}}-\int_0^{\frac{\pi}{2}}cosxdsin^{n-1}x)\\&=(n-1)\int_0^{\frac{\pi}{2}}cosx\cdot sin^{n-2}x\cdot cosxdx\\&=(n-1)\int_0^{\frac{\pi}{2}}(1-sin^2x)\cdot sin^{n-2}xdx\\&=(n-1)\int_0^{\frac{\pi}{2}}sin^{n-2}xdx-(n-1)\int_0^{\frac{\pi}{2}}sin^nxdx\\&=(n-1)I_{n-2}-(n-1)I_n\end{align*}$$ 移项整理之后，我们就得到了Wallis积分的递推公式： $$I_n=\frac{n-1}{n}I_{n-2}$$ 由于这个递推公式给出的是第$n$项与第$n-2$项的关系，我们当然要分奇偶的情况来看一下：$$\begin{align*}I_{2n}&=\frac{2n-1}{2n}I_{2n-2}\\I_{2n&#43;1}&=\frac{2n}{2n&#43;1}I_{2n-1}\end{align*}$$我们再来看一下，奇偶项的起始项$I_1$和$I_0$：$$\begin{align*}& I_1=\int_0^{\frac{\pi}{2}}sinxdx=-cosx\big|_0^{\frac{\pi}{2}}=1\\& I_0 = \int_0^{\frac{\pi}{2}}1dx=\frac{\pi}{2}\end{align*}$$有了初始值，我们就能写出$I_{2n}$和$I_{2n&#43;1}$具体的表达式了：$$\begin{align*}I_{2n}&=\frac{2n-1}{2n}I_{2n-2}=\frac{2n-1}{2n}\cdot\frac{2n-3}{2n-2}\cdot I_{2n-4}\\&=\frac{2n-1}{2n}\cdot\frac{2n-3}{2n-2}\cdot...\cdot\frac{3}{4}\cdot\frac{1}{2}\cdot I_0\\&=\frac{\pi}{2}\prod_{k=1}^n\frac{2k-1}{2k}\\I_{2n&#43;1}&=\frac{2n}{2n&#43;1}I_{2n-1}=\frac{2n}{2n&#43;1}\cdot\frac{2n-3}{2n-1}\cdot I_{2n-3}\\&=\frac{2n}{2n&#43;1}\cdot\frac{2n-3}{2n-1}\cdot." />
+<meta name="keywords" content="math,probability,normal distribution," />
+
+
+<meta property="og:url" content="http://localhost:1313/wallis%E5%85%AC%E5%BC%8F/">
+  <meta property="og:site_name" content="Another archive">
+  <meta property="og:title" content="Wallis公式">
+  <meta property="og:description" content="Wallis公式应用于Stirling公式的证明，该公式本身看起来是乘积式，但是实际上和圆周率$\pi$有关系。该公式的表达式为： $$\prod \limits_{i=1}^n\frac{4n^2}{4n^2-1}=\prod \limits_{i=1}^n\frac{2n}{2n-1}\frac{2n}{2n&#43;1}=\frac{\pi}{2}$$ 写成实际的数字更好看一些： $$\lim_{n\to&#43;\infty}\frac{2\cdot2\cdot4\cdot4\cdot...\cdot(2n)\cdot(2n)}{1\cdot3\cdot5\cdot7\cdot...\cdot(2n-1)\cdot(2n&#43;1)}=\frac{\pi}{2}$$ 公式的来源 这个公式来自于同名的Wallis积分，可以使用分部积分进行推导： $$\begin{align*}I_n&amp;=\int_0^{\frac{\pi}{2}}sin^nxdx\\&amp;=-\int_0^{\frac{\pi}{2}}sin^{n-1}xdcosx\\&amp;=-(cosxsin^{n-1}x\big|_0^{\frac{\pi}{2}}-\int_0^{\frac{\pi}{2}}cosxdsin^{n-1}x)\\&amp;=(n-1)\int_0^{\frac{\pi}{2}}cosx\cdot sin^{n-2}x\cdot cosxdx\\&amp;=(n-1)\int_0^{\frac{\pi}{2}}(1-sin^2x)\cdot sin^{n-2}xdx\\&amp;=(n-1)\int_0^{\frac{\pi}{2}}sin^{n-2}xdx-(n-1)\int_0^{\frac{\pi}{2}}sin^nxdx\\&amp;=(n-1)I_{n-2}-(n-1)I_n\end{align*}$$ 移项整理之后，我们就得到了Wallis积分的递推公式： $$I_n=\frac{n-1}{n}I_{n-2}$$ 由于这个递推公式给出的是第$n$项与第$n-2$项的关系，我们当然要分奇偶的情况来看一下：$$\begin{align*}I_{2n}&amp;=\frac{2n-1}{2n}I_{2n-2}\\I_{2n&#43;1}&amp;=\frac{2n}{2n&#43;1}I_{2n-1}\end{align*}$$我们再来看一下，奇偶项的起始项$I_1$和$I_0$：$$\begin{align*}&amp; I_1=\int_0^{\frac{\pi}{2}}sinxdx=-cosx\big|_0^{\frac{\pi}{2}}=1\\&amp; I_0 = \int_0^{\frac{\pi}{2}}1dx=\frac{\pi}{2}\end{align*}$$有了初始值，我们就能写出$I_{2n}$和$I_{2n&#43;1}$具体的表达式了：$$\begin{align*}I_{2n}&amp;=\frac{2n-1}{2n}I_{2n-2}=\frac{2n-1}{2n}\cdot\frac{2n-3}{2n-2}\cdot I_{2n-4}\\&amp;=\frac{2n-1}{2n}\cdot\frac{2n-3}{2n-2}\cdot...\cdot\frac{3}{4}\cdot\frac{1}{2}\cdot I_0\\&amp;=\frac{\pi}{2}\prod_{k=1}^n\frac{2k-1}{2k}\\I_{2n&#43;1}&amp;=\frac{2n}{2n&#43;1}I_{2n-1}=\frac{2n}{2n&#43;1}\cdot\frac{2n-3}{2n-1}\cdot I_{2n-3}\\&amp;=\frac{2n}{2n&#43;1}\cdot\frac{2n-3}{2n-1}\cdot.">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2024-08-29T20:21:50+08:00">
+    <meta property="article:modified_time" content="2024-08-29T20:21:50+08:00">
+    <meta property="article:tag" content="Math">
+    <meta property="article:tag" content="Probability">
+    <meta property="article:tag" content="Normal Distribution">
+
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Wallis公式">
+  <meta name="twitter:description" content="Wallis公式应用于Stirling公式的证明，该公式本身看起来是乘积式，但是实际上和圆周率$\pi$有关系。该公式的表达式为： $$\prod \limits_{i=1}^n\frac{4n^2}{4n^2-1}=\prod \limits_{i=1}^n\frac{2n}{2n-1}\frac{2n}{2n&#43;1}=\frac{\pi}{2}$$ 写成实际的数字更好看一些： $$\lim_{n\to&#43;\infty}\frac{2\cdot2\cdot4\cdot4\cdot...\cdot(2n)\cdot(2n)}{1\cdot3\cdot5\cdot7\cdot...\cdot(2n-1)\cdot(2n&#43;1)}=\frac{\pi}{2}$$ 公式的来源 这个公式来自于同名的Wallis积分，可以使用分部积分进行推导： $$\begin{align*}I_n&amp;=\int_0^{\frac{\pi}{2}}sin^nxdx\\&amp;=-\int_0^{\frac{\pi}{2}}sin^{n-1}xdcosx\\&amp;=-(cosxsin^{n-1}x\big|_0^{\frac{\pi}{2}}-\int_0^{\frac{\pi}{2}}cosxdsin^{n-1}x)\\&amp;=(n-1)\int_0^{\frac{\pi}{2}}cosx\cdot sin^{n-2}x\cdot cosxdx\\&amp;=(n-1)\int_0^{\frac{\pi}{2}}(1-sin^2x)\cdot sin^{n-2}xdx\\&amp;=(n-1)\int_0^{\frac{\pi}{2}}sin^{n-2}xdx-(n-1)\int_0^{\frac{\pi}{2}}sin^nxdx\\&amp;=(n-1)I_{n-2}-(n-1)I_n\end{align*}$$ 移项整理之后，我们就得到了Wallis积分的递推公式： $$I_n=\frac{n-1}{n}I_{n-2}$$ 由于这个递推公式给出的是第$n$项与第$n-2$项的关系，我们当然要分奇偶的情况来看一下：$$\begin{align*}I_{2n}&amp;=\frac{2n-1}{2n}I_{2n-2}\\I_{2n&#43;1}&amp;=\frac{2n}{2n&#43;1}I_{2n-1}\end{align*}$$我们再来看一下，奇偶项的起始项$I_1$和$I_0$：$$\begin{align*}&amp; I_1=\int_0^{\frac{\pi}{2}}sinxdx=-cosx\big|_0^{\frac{\pi}{2}}=1\\&amp; I_0 = \int_0^{\frac{\pi}{2}}1dx=\frac{\pi}{2}\end{align*}$$有了初始值，我们就能写出$I_{2n}$和$I_{2n&#43;1}$具体的表达式了：$$\begin{align*}I_{2n}&amp;=\frac{2n-1}{2n}I_{2n-2}=\frac{2n-1}{2n}\cdot\frac{2n-3}{2n-2}\cdot I_{2n-4}\\&amp;=\frac{2n-1}{2n}\cdot\frac{2n-3}{2n-2}\cdot...\cdot\frac{3}{4}\cdot\frac{1}{2}\cdot I_0\\&amp;=\frac{\pi}{2}\prod_{k=1}^n\frac{2k-1}{2k}\\I_{2n&#43;1}&amp;=\frac{2n}{2n&#43;1}I_{2n-1}=\frac{2n}{2n&#43;1}\cdot\frac{2n-3}{2n-1}\cdot I_{2n-3}\\&amp;=\frac{2n}{2n&#43;1}\cdot\frac{2n-3}{2n-1}\cdot.">
+
+
+
+
+  <meta itemprop="name" content="Wallis公式">
+  <meta itemprop="description" content="Wallis公式应用于Stirling公式的证明，该公式本身看起来是乘积式，但是实际上和圆周率$\pi$有关系。该公式的表达式为： $$\prod \limits_{i=1}^n\frac{4n^2}{4n^2-1}=\prod \limits_{i=1}^n\frac{2n}{2n-1}\frac{2n}{2n&#43;1}=\frac{\pi}{2}$$ 写成实际的数字更好看一些： $$\lim_{n\to&#43;\infty}\frac{2\cdot2\cdot4\cdot4\cdot...\cdot(2n)\cdot(2n)}{1\cdot3\cdot5\cdot7\cdot...\cdot(2n-1)\cdot(2n&#43;1)}=\frac{\pi}{2}$$ 公式的来源 这个公式来自于同名的Wallis积分，可以使用分部积分进行推导： $$\begin{align*}I_n&amp;=\int_0^{\frac{\pi}{2}}sin^nxdx\\&amp;=-\int_0^{\frac{\pi}{2}}sin^{n-1}xdcosx\\&amp;=-(cosxsin^{n-1}x\big|_0^{\frac{\pi}{2}}-\int_0^{\frac{\pi}{2}}cosxdsin^{n-1}x)\\&amp;=(n-1)\int_0^{\frac{\pi}{2}}cosx\cdot sin^{n-2}x\cdot cosxdx\\&amp;=(n-1)\int_0^{\frac{\pi}{2}}(1-sin^2x)\cdot sin^{n-2}xdx\\&amp;=(n-1)\int_0^{\frac{\pi}{2}}sin^{n-2}xdx-(n-1)\int_0^{\frac{\pi}{2}}sin^nxdx\\&amp;=(n-1)I_{n-2}-(n-1)I_n\end{align*}$$ 移项整理之后，我们就得到了Wallis积分的递推公式： $$I_n=\frac{n-1}{n}I_{n-2}$$ 由于这个递推公式给出的是第$n$项与第$n-2$项的关系，我们当然要分奇偶的情况来看一下：$$\begin{align*}I_{2n}&amp;=\frac{2n-1}{2n}I_{2n-2}\\I_{2n&#43;1}&amp;=\frac{2n}{2n&#43;1}I_{2n-1}\end{align*}$$我们再来看一下，奇偶项的起始项$I_1$和$I_0$：$$\begin{align*}&amp; I_1=\int_0^{\frac{\pi}{2}}sinxdx=-cosx\big|_0^{\frac{\pi}{2}}=1\\&amp; I_0 = \int_0^{\frac{\pi}{2}}1dx=\frac{\pi}{2}\end{align*}$$有了初始值，我们就能写出$I_{2n}$和$I_{2n&#43;1}$具体的表达式了：$$\begin{align*}I_{2n}&amp;=\frac{2n-1}{2n}I_{2n-2}=\frac{2n-1}{2n}\cdot\frac{2n-3}{2n-2}\cdot I_{2n-4}\\&amp;=\frac{2n-1}{2n}\cdot\frac{2n-3}{2n-2}\cdot...\cdot\frac{3}{4}\cdot\frac{1}{2}\cdot I_0\\&amp;=\frac{\pi}{2}\prod_{k=1}^n\frac{2k-1}{2k}\\I_{2n&#43;1}&amp;=\frac{2n}{2n&#43;1}I_{2n-1}=\frac{2n}{2n&#43;1}\cdot\frac{2n-3}{2n-1}\cdot I_{2n-3}\\&amp;=\frac{2n}{2n&#43;1}\cdot\frac{2n-3}{2n-1}\cdot.">
+  <meta itemprop="datePublished" content="2024-08-29T20:21:50+08:00">
+  <meta itemprop="dateModified" content="2024-08-29T20:21:50+08:00">
+  <meta itemprop="wordCount" content="80">
+  <meta itemprop="keywords" content="Math,Probability,Normal Distribution">
+<meta name="referrer" content="no-referrer-when-downgrade" />
+
+  <style>
+  body {
+    font-family: Verdana, sans-serif;
+    margin: auto;
+    padding: 20px;
+    max-width: 720px;
+    text-align: left;
+    background-color: #fff;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.5;
+    color: #444;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  strong,
+  b {
+    color: #222;
+  }
+
+  a {
+    color: #3273dc;
+     
+  }
+
+  .title {
+    text-decoration: none;
+    border: 0;
+  }
+
+  .title span {
+    font-weight: 400;
+  }
+
+  nav a {
+    margin-right: 10px;
+  }
+
+  textarea {
+    width: 100%;
+    font-size: 16px;
+  }
+
+  input {
+    font-size: 16px;
+  }
+
+  content {
+    line-height: 1.6;
+  }
+
+  table {
+    width: 100%;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  code {
+    padding: 2px 5px;
+    background-color: #f2f2f2;
+  }
+
+  pre code {
+    color: #222;
+    display: block;
+    padding: 20px;
+    white-space: pre-wrap;
+    font-size: 14px;
+    overflow-x: auto;
+  }
+
+  div.highlight pre {
+    background-color: initial;
+    color: initial;
+  }
+
+  div.highlight code {
+    background-color: unset;
+    color: unset;
+  }
+
+  blockquote {
+    border-left: 1px solid #999;
+    color: #222;
+    padding-left: 20px;
+    font-style: italic;
+  }
+
+  footer {
+    padding: 25px;
+    text-align: center;
+  }
+
+  .helptext {
+    color: #777;
+    font-size: small;
+  }
+
+  .errorlist {
+    color: #eba613;
+    font-size: small;
+  }
+
+   
+  ul.blog-posts {
+    list-style-type: none;
+    padding: unset;
+  }
+
+  ul.blog-posts li {
+    display: flex;
+  }
+
+  ul.blog-posts li span {
+    flex: 0 0 130px;
+  }
+
+  ul.blog-posts li a:visited {
+    color: #8b6fcb;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    body {
+      background-color: #333;
+      color: #ddd;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    strong,
+    b {
+      color: #eee;
+    }
+
+    a {
+      color: #8cc2dd;
+    }
+
+    code {
+      background-color: #777;
+    }
+
+    pre code {
+      color: #ddd;
+    }
+
+    blockquote {
+      color: #ccc;
+    }
+
+    textarea,
+    input {
+      background-color: #252525;
+      color: #ddd;
+    }
+
+    .helptext {
+      color: #aaa;
+    }
+  }
+
+</style>
+
+
+  
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<script>
+  MathJax = {
+    tex: {
+      displayMath: [['\\[', '\\]'], ['$$', '$$']],  
+      inlineMath: [['$', '$']]                  
+    }
+  };
+</script>
+
+  
+</head>
+
+<body>
+  <header><a href="/" class="title">
+  <h2>Another archive</h2>
+</a>
+<nav><a href="/">Home</a>
+
+<a href="/bear/">Bear</a>
+
+
+<a href="/blog">Blog</a>
+
+</nav>
+</header>
+  <main>
+
+<h1>Wallis公式</h1>
+<p>
+  <i>
+    <time datetime='2024-08-29' pubdate>
+      29 Aug, 2024
+    </time>
+  </i>
+</p>
+
+<content>
+  <p>Wallis公式应用于Stirling公式的证明，该公式本身看起来是乘积式，但是实际上和圆周率$\pi$有关系。该公式的表达式为：
+</p>
+$$
+\prod \limits_{i=1}^n\frac{4n^2}{4n^2-1}=\prod \limits_{i=1}^n\frac{2n}{2n-1}\frac{2n}{2n+1}=\frac{\pi}{2}
+$$
+<p>
+写成实际的数字更好看一些：
+</p>
+$$
+\lim_{n\to+\infty}\frac{2\cdot2\cdot4\cdot4\cdot...\cdot(2n)\cdot(2n)}{1\cdot3\cdot5\cdot7\cdot...\cdot(2n-1)\cdot(2n+1)}=\frac{\pi}{2}
+$$
+<h4 id="公式的来源">公式的来源</h4>
+<p>这个公式来自于同名的Wallis积分，可以使用分部积分进行推导：
+</p>
+$$
+\begin{align*}
+I_n&=\int_0^{\frac{\pi}{2}}sin^nxdx
+\\
+&=-\int_0^{\frac{\pi}{2}}sin^{n-1}xdcosx
+\\
+&=-(cosxsin^{n-1}x\big|_0^{\frac{\pi}{2}}-\int_0^{\frac{\pi}{2}}cosxdsin^{n-1}x)
+\\
+&=(n-1)\int_0^{\frac{\pi}{2}}cosx\cdot sin^{n-2}x\cdot cosxdx
+\\
+&=(n-1)\int_0^{\frac{\pi}{2}}(1-sin^2x)\cdot sin^{n-2}xdx
+\\
+&=(n-1)\int_0^{\frac{\pi}{2}}sin^{n-2}xdx-(n-1)\int_0^{\frac{\pi}{2}}sin^nxdx
+\\
+&=(n-1)I_{n-2}-(n-1)I_n
+\end{align*}
+$$
+<p>
+移项整理之后，我们就得到了Wallis积分的递推公式：
+</p>
+$$
+I_n=\frac{n-1}{n}I_{n-2}
+$$
+<p>
+由于这个递推公式给出的是第$n$项与第$n-2$项的关系，我们当然要分奇偶的情况来看一下：
+$$
+\begin{align*}
+I_{2n}&=\frac{2n-1}{2n}I_{2n-2}
+\\
+I_{2n+1}&=\frac{2n}{2n+1}I_{2n-1}
+\end{align*}
+$$
+我们再来看一下，奇偶项的起始项$I_1$和$I_0$：
+$$
+\begin{align*}
+& I_1=\int_0^{\frac{\pi}{2}}sinxdx=-cosx\big|_0^{\frac{\pi}{2}}=1
+\\
+& I_0 = \int_0^{\frac{\pi}{2}}1dx=\frac{\pi}{2}
+\end{align*}
+$$
+有了初始值，我们就能写出$I_{2n}$和$I_{2n+1}$具体的表达式了：
+$$
+\begin{align*}
+I_{2n}&=\frac{2n-1}{2n}I_{2n-2}=\frac{2n-1}{2n}\cdot\frac{2n-3}{2n-2}\cdot I_{2n-4}
+\\
+&=\frac{2n-1}{2n}\cdot\frac{2n-3}{2n-2}\cdot...\cdot\frac{3}{4}\cdot\frac{1}{2}\cdot I_0
+\\
+&=\frac{\pi}{2}\prod_{k=1}^n\frac{2k-1}{2k}
+\\
+I_{2n+1}&=\frac{2n}{2n+1}I_{2n-1}=\frac{2n}{2n+1}\cdot\frac{2n-3}{2n-1}\cdot I_{2n-3}
+\\
+&=\frac{2n}{2n+1}\cdot\frac{2n-3}{2n-1}\cdot...\cdot\frac{4}{5}\cdot\frac{2}{3}\cdot I_1
+\\
+&=\prod_{k=0}^n\frac{2k}{2k+1}
+\end{align*}
+$$
+不难看出，$\frac{I_{2n+1}}{I_{2n}}$已经很接近Willas公式的形式了(除了多乘了$\frac{\pi}{2}$)，现在新的问题是，求：
+</p>
+$$
+\lim_{n\to+\infty}\frac{I_{2n+1}}{I_{2n}}
+$$
+
+</content>
+
+<script src="https://giscus.app/client.js"
+        data-repo="lsnotgu/lsnotgu.github.io"
+        data-repo-id="R_kgDOMf6mdA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOMf6mdM4Chj2B"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="preferred_color_scheme"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+<p>
+  
+  <a href="http://localhost:1313/blog/math/">#Math</a>
+  
+  <a href="http://localhost:1313/blog/probability/">#Probability</a>
+  
+  <a href="http://localhost:1313/blog/normal-distribution/">#Normal Distribution</a>
+  
+</p>
+
+  </main>
+  <footer>Made with <a href="https://github.com/janraasch/hugo-bearblog/">Hugo ʕ•ᴥ•ʔ Bear</a>
+</footer>
+
+    
+</body>
+
+</html>
